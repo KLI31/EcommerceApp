@@ -7,5 +7,3 @@
 - Carolina Petro
 
 ## Requerimientos
-
-No se que poner aqui aun XDD
