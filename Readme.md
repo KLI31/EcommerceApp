@@ -1,4 +1,4 @@
-# Trabajo de base de datos 2
+# Proyecto Bases de Datos II - ECOMMERCE
 
 ## Integrantes
 
