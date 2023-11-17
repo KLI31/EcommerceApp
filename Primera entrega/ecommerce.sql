@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2023 a las 16:18:46
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 17-11-2023 a las 21:32:54
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,16 +26,16 @@ DELIMITER $$
 -- Procedimientos
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarStock` (IN `prendaID` INT, IN `nuevoStock` INT)   BEGIN
-    UPDATE prendas SET Stock = nuevoStock WHERE id_prenda = prendaID;
+    UPDATE prenda SET Stock = nuevoStock WHERE id_prenda = prendaID;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `AgregarProducto` (IN `nom` VARCHAR(255), IN `descripcion` TEXT, IN `precio` DECIMAL(10,2), IN `stock` INT, IN `catID` INT, IN `tallaID` INT, IN `estiloID` INT)   BEGIN
-    INSERT INTO prendas (Nombre, Descripcion, Precio, Stock, id_categoria, id_talla, id_estilo)
+    INSERT INTO prenda (Nombre, Descripcion, Precio, Stock, id_categoria, id_talla, id_estilo)
     VALUES (nom, descripcion, precio, stock, catID, tallaID, estiloID);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarUsuario` (IN `userID` INT)   BEGIN
-    DELETE FROM usuarios WHERE id_user = userID;
+    DELETE FROM usuario WHERE id_user = userID;
 END$$
 
 --
@@ -43,7 +43,7 @@ END$$
 --
 CREATE DEFINER=`root`@`localhost` FUNCTION `CantidadEnCategoria` (`catID` INT) RETURNS INT(11)  BEGIN
     DECLARE cantidad INT;
-    SELECT COUNT(*) INTO cantidad FROM prendas WHERE id_categoria = catID;
+    SELECT COUNT(*) INTO cantidad FROM prenda WHERE id_categoria = catID;
     RETURN cantidad;
 END$$
 
@@ -54,8 +54,8 @@ END$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `TotalGastadoPorUsuario` (`userID` INT) RETURNS DECIMAL(10,2)  BEGIN
     DECLARE totalGastado DECIMAL(10,2);
     SELECT SUM(PrecioTotal) INTO totalGastado
-    FROM detallesdelpedido d
-    JOIN pedidos p ON d.id_pedido = p.id_pedido
+    FROM detallepedido d
+    JOIN pedido p ON d.id_pedido = p.id_pedido
     WHERE p.id_user = userID;
     RETURN IFNULL(totalGastado, 0);
 END$$
@@ -65,44 +65,45 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `carritodecompras`
+-- Estructura de tabla para la tabla `carrito`
 --
 
-CREATE TABLE `carritodecompras` (
+CREATE TABLE `carrito` (
   `id_carrito` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
-  `FechaCreacion` datetime DEFAULT current_timestamp()
+  `id_prenda` int(11) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `carritodecompras`
+-- Volcado de datos para la tabla `carrito`
 --
 
-INSERT INTO `carritodecompras` (`id_carrito`, `id_user`, `FechaCreacion`) VALUES
-(1, 1, '2023-11-13 12:30:00'),
-(2, 2, '2023-11-13 14:45:00'),
-(3, 3, '2023-11-13 16:20:00'),
-(4, 4, '2023-11-13 18:05:00'),
-(5, 5, '2023-11-13 20:30:00'),
-(6, 6, '2023-11-13 22:15:00'),
-(7, 7, '2023-11-13 23:45:00');
+INSERT INTO `carrito` (`id_carrito`, `id_user`, `id_prenda`, `cantidad`) VALUES
+(1, 1, 1, 2),
+(2, 2, 3, 1),
+(3, 3, 5, 2),
+(4, 4, 7, 1),
+(5, 5, 6, 3),
+(6, 6, 2, 2),
+(7, 7, 4, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categorias`
+-- Estructura de tabla para la tabla `categoria`
 --
 
-CREATE TABLE `categorias` (
+CREATE TABLE `categoria` (
   `id_categoria` int(11) NOT NULL,
   `NombreCategoria` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `categorias`
+-- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categorias` (`id_categoria`, `NombreCategoria`) VALUES
+INSERT INTO `categoria` (`id_categoria`, `NombreCategoria`) VALUES
 (1, 'Camisetas'),
 (2, 'Camisas'),
 (3, 'Pantalones'),
@@ -129,38 +130,37 @@ CREATE TABLE `ciudad` (
 
 INSERT INTO `ciudad` (`id_ciudad`, `nombre`, `id_departamento`) VALUES
 (1, 'Medellín', 1),
-(2, 'Cali', 3),
-(3, 'Barranquilla', 4),
-(4, 'Bogotá', 2),
+(2, 'Bogotá', 2),
+(3, 'Cali', 3),
+(4, 'Barranquilla', 4),
 (5, 'Bucaramanga', 5),
-(6, 'Cartagena', 7),
-(7, 'Manizales', 1);
+(6, 'Cartagena', 6),
+(7, 'Tunja', 7);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `codigopostal`
+-- Estructura de tabla para la tabla `codigo_postal`
 --
 
-CREATE TABLE `codigopostal` (
+CREATE TABLE `codigo_postal` (
   `id_cod_postal` int(11) NOT NULL,
-  `codigo_postal` varchar(10) DEFAULT NULL,
-  `id_ciudad` int(11) DEFAULT NULL,
-  `id_departamento` int(11) DEFAULT NULL
+  `codigo_postal` varchar(6) DEFAULT NULL,
+  `id_ciudad` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `codigopostal`
+-- Volcado de datos para la tabla `codigo_postal`
 --
 
-INSERT INTO `codigopostal` (`id_cod_postal`, `codigo_postal`, `id_ciudad`, `id_departamento`) VALUES
-(1, '050001', 1, 1),
-(2, '760001', 2, 3),
-(3, '080001', 4, 2),
-(4, '200001', 5, 5),
-(5, '680001', 6, 7),
-(6, '110001', 7, 1),
-(7, '170001', 3, 4);
+INSERT INTO `codigo_postal` (`id_cod_postal`, `codigo_postal`, `id_ciudad`) VALUES
+(1, '050001', 1),
+(2, '110111', 2),
+(3, '760001', 3),
+(4, '080001', 4),
+(5, '680001', 5),
+(6, '130001', 6),
+(7, '150001', 7);
 
 -- --------------------------------------------------------
 
@@ -179,48 +179,54 @@ CREATE TABLE `departamento` (
 
 INSERT INTO `departamento` (`id_departamento`, `nombre`) VALUES
 (1, 'Antioquia'),
-(2, 'Bogotá D.C.'),
+(2, 'Cundinamarca'),
 (3, 'Valle del Cauca'),
 (4, 'Atlántico'),
 (5, 'Santander'),
-(6, 'Cundinamarca'),
-(7, 'Bolívar');
+(6, 'Bolívar'),
+(7, 'Boyacá');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detallesdelcarrito`
+-- Estructura de tabla para la tabla `detallepedido`
 --
 
-CREATE TABLE `detallesdelcarrito` (
-  `id_detalle_carrito` int(11) NOT NULL,
-  `id_carrito` int(11) DEFAULT NULL,
+CREATE TABLE `detallepedido` (
+  `id_detalle_pedido` int(11) NOT NULL,
+  `id_pedido` int(11) DEFAULT NULL,
   `id_prenda` int(11) DEFAULT NULL,
   `Cantidad` int(11) DEFAULT NULL,
   `PrecioTotal` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `detallesdelcarrito`
+-- Volcado de datos para la tabla `detallepedido`
 --
 
-INSERT INTO `detallesdelcarrito` (`id_detalle_carrito`, `id_carrito`, `id_prenda`, `Cantidad`, `PrecioTotal`) VALUES
-(1, 1, 1, 2, 50000.00),
-(2, 2, 3, 1, 55000.00),
-(3, 3, 5, 3, 360000.00),
-(4, 4, 7, 2, 170000.00),
-(5, 5, 2, 1, 45000.00),
-(6, 6, 4, 4, 180000.00),
-(7, 7, 6, 1, 120000.00),
-(8, 1, 1, 11, 100000.00);
+INSERT INTO `detallepedido` (`id_detalle_pedido`, `id_pedido`, `id_prenda`, `Cantidad`, `PrecioTotal`) VALUES
+(1, 1, 1, 2, '40000.00'),
+(2, 2, 3, 1, '80000.00'),
+(3, 3, 5, 2, '240000.00'),
+(4, 4, 7, 1, '70000.00'),
+(5, 5, 6, 3, '450000.00'),
+(6, 6, 2, 2, '100000.00'),
+(7, 7, 4, 1, '40000.00');
 
 --
--- Disparadores `detallesdelcarrito`
+-- Disparadores `detallepedido`
 --
 DELIMITER $$
-CREATE TRIGGER `ValidarStockAntesCarrito` BEFORE INSERT ON `detallesdelcarrito` FOR EACH ROW BEGIN
+CREATE TRIGGER `ActualizarStockDespuesPedido` AFTER INSERT ON `detallepedido` FOR EACH ROW BEGIN
+    UPDATE prenda SET Stock = Stock - NEW.Cantidad
+    WHERE id_prenda = NEW.id_prenda;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `ValidarStockAntesCarrito` BEFORE INSERT ON `detallepedido` FOR EACH ROW BEGIN
     DECLARE stockActual INT;
-    SELECT Stock INTO stockActual FROM prendas WHERE id_prenda = NEW.id_prenda;
+    SELECT Stock INTO stockActual FROM prenda WHERE id_prenda = NEW.id_prenda;
     IF stockActual < NEW.Cantidad THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Stock insuficiente';
     END IF;
@@ -231,57 +237,48 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detallesdelpedido`
+-- Estructura de tabla para la tabla `direccion`
 --
 
-CREATE TABLE `detallesdelpedido` (
-  `id_detalle_pedido` int(11) NOT NULL,
-  `id_pedido` int(11) DEFAULT NULL,
-  `id_prenda` int(11) DEFAULT NULL,
-  `Cantidad` int(11) DEFAULT NULL,
-  `PrecioTotal` decimal(10,2) DEFAULT NULL
+CREATE TABLE `direccion` (
+  `id_direccion` int(11) NOT NULL,
+  `id_tipo_calle` int(11) DEFAULT NULL,
+  `calle` varchar(255) DEFAULT NULL,
+  `numero` varchar(255) DEFAULT NULL,
+  `numero2` varchar(255) DEFAULT NULL,
+  `barrio` varchar(255) DEFAULT NULL,
+  `id_codigopostal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `detallesdelpedido`
+-- Volcado de datos para la tabla `direccion`
 --
 
-INSERT INTO `detallesdelpedido` (`id_detalle_pedido`, `id_pedido`, `id_prenda`, `Cantidad`, `PrecioTotal`) VALUES
-(1, 1, 1, 2, 50000.00),
-(2, 2, 3, 1, 55000.00),
-(3, 3, 5, 3, 360000.00),
-(4, 4, 7, 2, 170000.00),
-(5, 5, 2, 1, 45000.00),
-(6, 6, 4, 4, 180000.00),
-(7, 7, 6, 1, 120000.00);
-
---
--- Disparadores `detallesdelpedido`
---
-DELIMITER $$
-CREATE TRIGGER `ActualizarStockDespuesPedido` AFTER INSERT ON `detallesdelpedido` FOR EACH ROW BEGIN
-    UPDATE prendas SET Stock = Stock - NEW.Cantidad
-    WHERE id_prenda = NEW.id_prenda;
-END
-$$
-DELIMITER ;
+INSERT INTO `direccion` (`id_direccion`, `id_tipo_calle`, `calle`, `numero`, `numero2`, `barrio`, `id_codigopostal`) VALUES
+(1, 1, '22B', '50', '30', 'El Poblado', 1),
+(2, 2, '4 Sur', '80', '15', 'Chapinero', 2),
+(3, 3, '48', '23', '58', 'Granada', 3),
+(4, 1, '70', '100', '40', 'El Prado', 4),
+(5, 2, '33', '76', '12', 'Cabecera', 5),
+(6, 3, 'San Martín', '20', '22', 'Getsemaní', 6),
+(7, 1, '15', '33', '55', 'Maldonado', 7);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estilos`
+-- Estructura de tabla para la tabla `estilo`
 --
 
-CREATE TABLE `estilos` (
+CREATE TABLE `estilo` (
   `id_estilo` int(11) NOT NULL,
-  `estilo` varchar(45) DEFAULT NULL
+  `estilo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `estilos`
+-- Volcado de datos para la tabla `estilo`
 --
 
-INSERT INTO `estilos` (`id_estilo`, `estilo`) VALUES
+INSERT INTO `estilo` (`id_estilo`, `estilo`) VALUES
 (1, 'Femenino'),
 (2, 'Masculino'),
 (3, 'Unisex');
@@ -289,37 +286,37 @@ INSERT INTO `estilos` (`id_estilo`, `estilo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pedidos`
+-- Estructura de tabla para la tabla `pedido`
 --
 
-CREATE TABLE `pedidos` (
+CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
-  `DireccionEnvioID` int(11) DEFAULT NULL,
-  `FechaPedido` datetime DEFAULT NULL,
-  `EstadoPedido` enum('pendiente','enviado','entregado') DEFAULT NULL
+  `id_direccion` int(11) DEFAULT NULL,
+  `FechaPedido` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `EstadoPedido` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `pedidos`
+-- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedidos` (`id_pedido`, `id_user`, `DireccionEnvioID`, `FechaPedido`, `EstadoPedido`) VALUES
-(1, 1, 1, '2023-11-14 10:00:00', 'pendiente'),
-(2, 2, 3, '2023-11-14 11:15:00', 'pendiente'),
-(3, 3, 2, '2023-11-14 12:30:00', 'pendiente'),
-(4, 4, 5, '2023-11-14 13:45:00', 'pendiente'),
-(5, 5, 6, '2023-11-14 15:00:00', 'pendiente'),
-(6, 6, 7, '2023-11-14 16:15:00', 'pendiente'),
-(7, 7, 1, '2023-11-14 17:30:00', 'pendiente');
+INSERT INTO `pedido` (`id_pedido`, `id_user`, `id_direccion`, `FechaPedido`, `EstadoPedido`) VALUES
+(1, 1, 1, '2023-11-17 05:37:14', 'Entregado'),
+(2, 2, 2, '2023-11-17 05:37:14', 'En proceso'),
+(3, 3, 3, '2023-11-17 05:37:14', 'En proceso'),
+(4, 4, 4, '2023-11-17 05:37:14', 'Cancelado'),
+(5, 5, 5, '2023-11-17 05:37:14', 'Entregado'),
+(6, 6, 6, '2023-11-17 05:37:14', 'En proceso'),
+(7, 7, 7, '2023-11-17 05:37:14', 'Entregado');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `prendas`
+-- Estructura de tabla para la tabla `prenda`
 --
 
-CREATE TABLE `prendas` (
+CREATE TABLE `prenda` (
   `id_prenda` int(11) NOT NULL,
   `Nombre` varchar(255) DEFAULT NULL,
   `Descripcion` text DEFAULT NULL,
@@ -331,18 +328,18 @@ CREATE TABLE `prendas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `prendas`
+-- Volcado de datos para la tabla `prenda`
 --
 
-INSERT INTO `prendas` (`id_prenda`, `Nombre`, `Descripcion`, `Precio`, `Stock`, `id_categoria`, `id_talla`, `id_estilo`) VALUES
-(1, 'Camiseta básica', 'Camiseta de algodón negro', 25000.00, 80, 1, 1, 1),
-(2, 'Camisa a rayas', 'Camisa de manga larga', 55000.00, 50, 2, 2, 2),
-(3, 'Pantalón casual', 'Pantalón de mezclilla azul', 75000.00, 30, 3, 3, 3),
-(4, 'Falda floral', 'Falda corta estampada', 45000.00, 40, 4, 1, 1),
-(5, 'Zapatos deportivos', 'Zapatos para correr', 120000.00, 20, 5, 4, 2),
-(6, 'Vestido elegante', 'Vestido largo de fiesta', 120000.00, 15, 6, 3, 3),
-(7, 'Hoodie con capucha', 'Hoodie unisex gris', 85000.00, 25, 7, 2, 1),
-(8, 'Falda de rayas', 'Falda de drill', 30000.00, 23, 4, 2, 1);
+INSERT INTO `prenda` (`id_prenda`, `Nombre`, `Descripcion`, `Precio`, `Stock`, `id_categoria`, `id_talla`, `id_estilo`) VALUES
+(1, 'Camiseta Básica', 'Camiseta algodón color blanco', '20000.00', 50, 1, 1, 3),
+(2, 'Camisa Formal', 'Camisa manga larga color azul', '50000.00', 30, 2, 2, 2),
+(3, 'Jeans Clásicos', 'Jeans azules corte recto', '80000.00', 40, 3, 3, 3),
+(4, 'Falda Plisada', 'Falda corta color negro', '40000.00', 25, 4, 4, 1),
+(5, 'Zapatos Deportivos', 'Zapatos para correr color gris', '120000.00', 20, 5, 1, 3),
+(6, 'Vestido de Noche', 'Vestido largo elegante color rojo', '150000.00', 15, 6, 2, 1),
+(7, 'Hoodie Clásico', 'Hoodie algodón color negro', '70000.00', 35, 7, 3, 3),
+(8, 'Camiseta SNK', 'Camiseta con estampado', '30000.00', 50, 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -353,8 +350,8 @@ INSERT INTO `prendas` (`id_prenda`, `Nombre`, `Descripcion`, `Precio`, `Stock`, 
 CREATE TABLE `registro_actividad` (
   `id_registro` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL,
-  `actividad` varchar(255) DEFAULT NULL
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `actividad` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -362,24 +359,24 @@ CREATE TABLE `registro_actividad` (
 --
 
 INSERT INTO `registro_actividad` (`id_registro`, `id_user`, `fecha`, `actividad`) VALUES
-(1, 1, '2023-11-13 22:58:25', 'Login');
+(1, 1, '2023-11-17 05:52:41', 'Usuario actualizado. Cambios en: correo electrónico, ');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tallas`
+-- Estructura de tabla para la tabla `talla`
 --
 
-CREATE TABLE `tallas` (
+CREATE TABLE `talla` (
   `id_talla` int(11) NOT NULL,
-  `talla` varchar(45) DEFAULT NULL
+  `talla` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `tallas`
+-- Volcado de datos para la tabla `talla`
 --
 
-INSERT INTO `tallas` (`id_talla`, `talla`) VALUES
+INSERT INTO `talla` (`id_talla`, `talla`) VALUES
 (1, 'S'),
 (2, 'M'),
 (3, 'L'),
@@ -388,62 +385,122 @@ INSERT INTO `tallas` (`id_talla`, `talla`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Estructura de tabla para la tabla `tipo_calle`
 --
 
-CREATE TABLE `usuarios` (
-  `id_user` int(11) NOT NULL,
-  `Nombre` varchar(255) DEFAULT NULL,
-  `Apellido` varchar(255) DEFAULT NULL,
-  `CorreoElectronico` varchar(255) DEFAULT NULL,
-  `Contraseña` varchar(255) DEFAULT NULL,
-  `TipoUsuario` enum('Cliente','Administrador') DEFAULT NULL,
-  `Direccion` text DEFAULT NULL,
-  `Telefono` varchar(20) DEFAULT NULL,
-  `cod_postal` int(11) DEFAULT NULL,
-  `id_ciudad` int(11) DEFAULT NULL,
-  `id_departamento` int(11) DEFAULT NULL
+CREATE TABLE `tipo_calle` (
+  `id_tipo_calle` int(11) NOT NULL,
+  `tipo_calle` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Volcado de datos para la tabla `tipo_calle`
 --
 
-INSERT INTO `usuarios` (`id_user`, `Nombre`, `Apellido`, `CorreoElectronico`, `Contraseña`, `TipoUsuario`, `Direccion`, `Telefono`, `cod_postal`, `id_ciudad`, `id_departamento`) VALUES
-(1, 'Juan', 'Pérez', 'jsi123@gmail.com', 'password', 'Cliente', 'Carrera 45 #23-56', '3101234567', 1, 1, 1),
-(2, 'María', 'Gómez', 'maria.gomez@hotmail.com', 'secreto', 'Administrador', 'Calle 70 #12-34', '3159876543', 2, 3, 3),
-(3, 'Carlos', 'Rodríguez', 'carlos.rodriguez@gmail.com', 'clave', 'Cliente', 'Avenida 80 #45-67', '3201112233', 4, 2, 2),
-(4, 'Laura', 'Martínez', 'laura.martinez@yahoo.com', 'contrasena', 'Cliente', 'Calle 100 #56-78', '3184445556', 5, 5, 5),
-(5, 'Andrés', 'López', 'andres.lopez@gmail.com', 'pass123', 'Cliente', 'Carrera 32 #45-67', '3009876543', 6, 6, 7),
-(6, 'Ana', 'Sánchez', 'ana.sanchez@hotmail.com', '1234', 'Cliente', 'Calle 10 #11-12', '3171234567', 7, 7, 1),
-(7, 'Oscar', 'Ramírez', 'oscar.ramirez@gmail.com', 'clave123', 'Cliente', 'Carrera 15 #19-20', '3145556667', 3, 4, 4);
+INSERT INTO `tipo_calle` (`id_tipo_calle`, `tipo_calle`) VALUES
+(1, 'Calle'),
+(2, 'Carrera'),
+(3, 'Avenida'),
+(4, 'Transversal'),
+(5, 'Diagonal'),
+(6, 'Circular'),
+(7, 'Pasaje');
+
+-- --------------------------------------------------------
 
 --
--- Disparadores `usuarios`
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id_user` int(11) NOT NULL,
+  `Primer_nombre` varchar(255) DEFAULT NULL,
+  `Segundo_nombre` varchar(255) DEFAULT NULL,
+  `Primer_Apellido` varchar(255) DEFAULT NULL,
+  `Segundo_apellido` varchar(255) DEFAULT NULL,
+  `Correo_Electronico` varchar(255) DEFAULT NULL,
+  `Contraseña` varchar(255) DEFAULT NULL,
+  `TipoUsuario` enum('Cliente','Administrador') DEFAULT NULL,
+  `Telefono` varchar(10) DEFAULT NULL,
+  `id_direccion` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_user`, `Primer_nombre`, `Segundo_nombre`, `Primer_Apellido`, `Segundo_apellido`, `Correo_Electronico`, `Contraseña`, `TipoUsuario`, `Telefono`, `id_direccion`) VALUES
+(1, 'Juan', 'Carlos', 'González', 'López', 'jsi123@gmail.com', 'pass123', 'Cliente', '3201234567', 1),
+(2, 'Laura', 'Sofía', 'Martínez', 'Díaz', 'laura.martinez@example.com', 'pass456', 'Cliente', '3123456789', 2),
+(3, 'Carlos', 'Andrés', 'Rodríguez', 'Gómez', 'carlos.rodriguez@example.com', 'pass789', 'Administrador', '3001234567', 3),
+(4, 'María', 'Paula', 'Hernández', 'Ruiz', 'maria.hernandez@example.com', 'pass101', 'Cliente', '3156789012', 4),
+(5, 'Sergio', 'Luis', 'Pérez', 'Jiménez', 'sergio.perez@example.com', 'pass102', 'Cliente', '3183456789', 5),
+(6, 'Catalina', 'Isabel', 'Gómez', 'Fernández', 'catalina.gomez@example.com', 'pass103', 'Cliente', '3161234567', 6),
+(7, 'Esteban', 'José', 'Moreno', 'Cardona', 'esteban.moreno@example.com', 'pass104', 'Cliente', '3172345678', 7);
+
+--
+-- Disparadores `usuario`
 --
 DELIMITER $$
-CREATE TRIGGER `RegistrarLoginUsuario` AFTER UPDATE ON `usuarios` FOR EACH ROW BEGIN
+CREATE TRIGGER `RegistrarCambiosUsuario` AFTER UPDATE ON `usuario` FOR EACH ROW BEGIN
     INSERT INTO registro_actividad (id_user, fecha, actividad)
-    VALUES (NEW.id_user, NOW(), 'Login');
+    VALUES (
+        NEW.id_user,
+        NOW(),
+        CONCAT('Usuario actualizado. Cambios en: ', 
+               IF(OLD.Primer_nombre != NEW.Primer_nombre, 'nombre, ', ''), 
+               IF(OLD.Primer_Apellido != NEW.Primer_Apellido, 'apellido, ', ''),
+               IF(OLD.Correo_Electronico != NEW.Correo_Electronico, 'correo electrónico, ', ''),
+               IF(OLD.Contraseña != NEW.Contraseña, 'contraseña, ', ''),
+               IF(OLD.TipoUsuario != NEW.TipoUsuario, 'tipo de usuario, ', ''),
+               IF(OLD.Telefono != NEW.Telefono, 'teléfono, ', ''),
+               IF(OLD.id_direccion != NEW.id_direccion, 'dirección', ''))
+    );
 END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `wishlist`
+--
+
+CREATE TABLE `wishlist` (
+  `id_wishlist` int(11) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `id_prenda` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `wishlist`
+--
+
+INSERT INTO `wishlist` (`id_wishlist`, `id_user`, `id_prenda`) VALUES
+(1, 1, 6),
+(2, 2, 7),
+(3, 3, 5),
+(4, 4, 1),
+(5, 5, 3),
+(6, 6, 2),
+(7, 7, 4);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `carritodecompras`
+-- Indices de la tabla `carrito`
 --
-ALTER TABLE `carritodecompras`
+ALTER TABLE `carrito`
   ADD PRIMARY KEY (`id_carrito`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_prenda` (`id_prenda`);
 
 --
--- Indices de la tabla `categorias`
+-- Indices de la tabla `categoria`
 --
-ALTER TABLE `categorias`
+ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
@@ -454,12 +511,11 @@ ALTER TABLE `ciudad`
   ADD KEY `id_departamento` (`id_departamento`);
 
 --
--- Indices de la tabla `codigopostal`
+-- Indices de la tabla `codigo_postal`
 --
-ALTER TABLE `codigopostal`
+ALTER TABLE `codigo_postal`
   ADD PRIMARY KEY (`id_cod_postal`),
-  ADD KEY `id_ciudad` (`id_ciudad`),
-  ADD KEY `id_departamento` (`id_departamento`);
+  ADD KEY `id_ciudad` (`id_ciudad`);
 
 --
 -- Indices de la tabla `departamento`
@@ -468,38 +524,39 @@ ALTER TABLE `departamento`
   ADD PRIMARY KEY (`id_departamento`);
 
 --
--- Indices de la tabla `detallesdelcarrito`
+-- Indices de la tabla `detallepedido`
 --
-ALTER TABLE `detallesdelcarrito`
-  ADD PRIMARY KEY (`id_detalle_carrito`),
-  ADD KEY `id_carrito` (`id_carrito`),
-  ADD KEY `id_prenda` (`id_prenda`);
-
---
--- Indices de la tabla `detallesdelpedido`
---
-ALTER TABLE `detallesdelpedido`
+ALTER TABLE `detallepedido`
   ADD PRIMARY KEY (`id_detalle_pedido`),
   ADD KEY `id_pedido` (`id_pedido`),
   ADD KEY `id_prenda` (`id_prenda`);
 
 --
--- Indices de la tabla `estilos`
+-- Indices de la tabla `direccion`
 --
-ALTER TABLE `estilos`
+ALTER TABLE `direccion`
+  ADD PRIMARY KEY (`id_direccion`),
+  ADD KEY `id_tipo_calle` (`id_tipo_calle`),
+  ADD KEY `id_codigopostal` (`id_codigopostal`);
+
+--
+-- Indices de la tabla `estilo`
+--
+ALTER TABLE `estilo`
   ADD PRIMARY KEY (`id_estilo`);
 
 --
--- Indices de la tabla `pedidos`
+-- Indices de la tabla `pedido`
 --
-ALTER TABLE `pedidos`
+ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id_pedido`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_direccion` (`id_direccion`);
 
 --
--- Indices de la tabla `prendas`
+-- Indices de la tabla `prenda`
 --
-ALTER TABLE `prendas`
+ALTER TABLE `prenda`
   ADD PRIMARY KEY (`id_prenda`),
   ADD KEY `id_categoria` (`id_categoria`),
   ADD KEY `id_talla` (`id_talla`),
@@ -513,35 +570,46 @@ ALTER TABLE `registro_actividad`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indices de la tabla `tallas`
+-- Indices de la tabla `talla`
 --
-ALTER TABLE `tallas`
+ALTER TABLE `talla`
   ADD PRIMARY KEY (`id_talla`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indices de la tabla `tipo_calle`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `tipo_calle`
+  ADD PRIMARY KEY (`id_tipo_calle`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `CorreoElectronico` (`CorreoElectronico`),
-  ADD KEY `cod_postal` (`cod_postal`),
-  ADD KEY `id_ciudad` (`id_ciudad`),
-  ADD KEY `id_departamento` (`id_departamento`);
+  ADD KEY `id_direccion` (`id_direccion`);
+
+--
+-- Indices de la tabla `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD PRIMARY KEY (`id_wishlist`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_prenda` (`id_prenda`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `carritodecompras`
+-- AUTO_INCREMENT de la tabla `carrito`
 --
-ALTER TABLE `carritodecompras`
+ALTER TABLE `carrito`
   MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `categorias`
+-- AUTO_INCREMENT de la tabla `categoria`
 --
-ALTER TABLE `categorias`
+ALTER TABLE `categoria`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
@@ -551,9 +619,9 @@ ALTER TABLE `ciudad`
   MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `codigopostal`
+-- AUTO_INCREMENT de la tabla `codigo_postal`
 --
-ALTER TABLE `codigopostal`
+ALTER TABLE `codigo_postal`
   MODIFY `id_cod_postal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
@@ -563,33 +631,33 @@ ALTER TABLE `departamento`
   MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `detallesdelcarrito`
+-- AUTO_INCREMENT de la tabla `detallepedido`
 --
-ALTER TABLE `detallesdelcarrito`
-  MODIFY `id_detalle_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `detallesdelpedido`
---
-ALTER TABLE `detallesdelpedido`
+ALTER TABLE `detallepedido`
   MODIFY `id_detalle_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `estilos`
+-- AUTO_INCREMENT de la tabla `direccion`
 --
-ALTER TABLE `estilos`
+ALTER TABLE `direccion`
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `estilo`
+--
+ALTER TABLE `estilo`
   MODIFY `id_estilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `pedidos`
+-- AUTO_INCREMENT de la tabla `pedido`
 --
-ALTER TABLE `pedidos`
+ALTER TABLE `pedido`
   MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `prendas`
+-- AUTO_INCREMENT de la tabla `prenda`
 --
-ALTER TABLE `prendas`
+ALTER TABLE `prenda`
   MODIFY `id_prenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
@@ -599,81 +667,99 @@ ALTER TABLE `registro_actividad`
   MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `tallas`
+-- AUTO_INCREMENT de la tabla `talla`
 --
-ALTER TABLE `tallas`
+ALTER TABLE `talla`
   MODIFY `id_talla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT de la tabla `tipo_calle`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `tipo_calle`
+  MODIFY `id_tipo_calle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `id_wishlist` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `carritodecompras`
+-- Filtros para la tabla `carrito`
 --
-ALTER TABLE `carritodecompras`
-  ADD CONSTRAINT `carritodecompras_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`);
+ALTER TABLE `carrito`
+  ADD CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`),
+  ADD CONSTRAINT `carrito_ibfk_2` FOREIGN KEY (`id_prenda`) REFERENCES `prenda` (`id_prenda`);
 
 --
 -- Filtros para la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
-  ADD CONSTRAINT `ciudad_ibfk_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `ciudad_ibfk_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`);
 
 --
--- Filtros para la tabla `codigopostal`
+-- Filtros para la tabla `codigo_postal`
 --
-ALTER TABLE `codigopostal`
-  ADD CONSTRAINT `codigopostal_ibfk_1` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `codigopostal_ibfk_2` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `codigo_postal`
+  ADD CONSTRAINT `codigo_postal_ibfk_1` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`);
 
 --
--- Filtros para la tabla `detallesdelcarrito`
+-- Filtros para la tabla `detallepedido`
 --
-ALTER TABLE `detallesdelcarrito`
-  ADD CONSTRAINT `detallesdelcarrito_ibfk_1` FOREIGN KEY (`id_carrito`) REFERENCES `carritodecompras` (`id_carrito`),
-  ADD CONSTRAINT `detallesdelcarrito_ibfk_2` FOREIGN KEY (`id_prenda`) REFERENCES `prendas` (`id_prenda`);
+ALTER TABLE `detallepedido`
+  ADD CONSTRAINT `detallepedido_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`),
+  ADD CONSTRAINT `detallepedido_ibfk_2` FOREIGN KEY (`id_prenda`) REFERENCES `prenda` (`id_prenda`);
 
 --
--- Filtros para la tabla `detallesdelpedido`
+-- Filtros para la tabla `direccion`
 --
-ALTER TABLE `detallesdelpedido`
-  ADD CONSTRAINT `detallesdelpedido_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id_pedido`),
-  ADD CONSTRAINT `detallesdelpedido_ibfk_2` FOREIGN KEY (`id_prenda`) REFERENCES `prendas` (`id_prenda`);
+ALTER TABLE `direccion`
+  ADD CONSTRAINT `direccion_ibfk_1` FOREIGN KEY (`id_tipo_calle`) REFERENCES `tipo_calle` (`id_tipo_calle`),
+  ADD CONSTRAINT `direccion_ibfk_2` FOREIGN KEY (`id_codigopostal`) REFERENCES `codigo_postal` (`id_cod_postal`);
 
 --
--- Filtros para la tabla `pedidos`
+-- Filtros para la tabla `pedido`
 --
-ALTER TABLE `pedidos`
-  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`);
+ALTER TABLE `pedido`
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`),
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_direccion`) REFERENCES `direccion` (`id_direccion`);
 
 --
--- Filtros para la tabla `prendas`
+-- Filtros para la tabla `prenda`
 --
-ALTER TABLE `prendas`
-  ADD CONSTRAINT `prendas_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`),
-  ADD CONSTRAINT `prendas_ibfk_2` FOREIGN KEY (`id_talla`) REFERENCES `tallas` (`id_talla`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `prendas_ibfk_3` FOREIGN KEY (`id_estilo`) REFERENCES `estilos` (`id_estilo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `prenda`
+  ADD CONSTRAINT `prenda_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`),
+  ADD CONSTRAINT `prenda_ibfk_2` FOREIGN KEY (`id_talla`) REFERENCES `talla` (`id_talla`),
+  ADD CONSTRAINT `prenda_ibfk_3` FOREIGN KEY (`id_estilo`) REFERENCES `estilo` (`id_estilo`);
 
 --
 -- Filtros para la tabla `registro_actividad`
 --
 ALTER TABLE `registro_actividad`
-  ADD CONSTRAINT `registro_actividad_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`);
+  ADD CONSTRAINT `registro_actividad_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`);
 
 --
--- Filtros para la tabla `usuarios`
+-- Filtros para la tabla `usuario`
 --
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`cod_postal`) REFERENCES `codigopostal` (`id_cod_postal`),
-  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`),
-  ADD CONSTRAINT `usuarios_ibfk_3` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`);
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_direccion`) REFERENCES `direccion` (`id_direccion`);
+
+--
+-- Filtros para la tabla `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuario` (`id_user`),
+  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`id_prenda`) REFERENCES `prenda` (`id_prenda`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
