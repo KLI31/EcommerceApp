@@ -1,8 +1,10 @@
+body{
+    overflow: hidden;
+}
 
 .pantalla-dividida{
     display: flex;
 }
-
 
 .izquierda{
     width: 45%;
@@ -12,7 +14,6 @@
     opacity: 65%;
 } 
 
-
 .derecha{
     display: flex;
     flex-direction: column;
@@ -21,40 +22,17 @@
     margin: 80px;
 }
 
-
 .container{
     justify-content: center;
     align-items: center;
     margin: 70px 40px;
 }
 
-
 .title-login{
     font-size: 63px;
     font-weight: bold;
     color: #34251F;
 }
-
-.forms-container {
-    margin-top: 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-
-label{
-    font-size: 19px;
-}
-
-input{
-    padding: 15px 30px;
-    border-radius: 14px;
-    border: 1px solid #000;
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
 
 .button-container{
     display: flex;

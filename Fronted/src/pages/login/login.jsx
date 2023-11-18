@@ -1,21 +1,16 @@
 import "./login.css"
 import Button from "../../components/Button"
+import { PasswordInput, Input } from "../../components/Input"
 
 const login = () => {
     return (
         <section className="pantalla-dividida">
-            <div className="izquierda"></div>
+            <div className="izquierda" />
             <div className="derecha">
                 <div className="container">
                     <h1 className="title-login">Iniciar Sesion</h1>
-                    <div className="forms-container">
-                        <label htmlFor="">Correo Electronico</label>
-                        <input type="text" name="" id="" placeholder="Ingrese su correo" size={50} />
-                    </div>
-                    <div className="forms-container">
-                        <label htmlFor="">Contraseña</label>
-                        <input type="text" name="" id="" placeholder="Ingrese su contraseña" />
-                    </div>
+                    <Input label="Correo" placeholder="Ingrese su correo electronico" type="email" value="lrambao5432@gmail.com" size={40} />
+                    <PasswordInput label="Contraseña" placeholder="Ingrese su contraseña" value="tU MADRE SI VES ESTA C" />
                 </div>
 
                 <div className="button-container">
