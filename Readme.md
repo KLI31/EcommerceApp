@@ -1,4 +1,4 @@
-# Trabajo de base de datos 2
+# Trabajo final de base de datos 2
 
 ## Integrantes
 
