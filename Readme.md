@@ -8,4 +8,4 @@
 
 ## Prototipo
 
-[Prototipo del Proyecto](https://www.figma.com/file/UnBFaMYwhexc7Hc5J9J4g2/e-Commerce-Fashion?type=design&node-id=142-223&mode=design&t=dEHYkGSZHJGKyuno-0)
+[Prototipo del Proyecto](https://www.figma.com/file/UnBFaMYwhexc7Hc5J9J4g2/e-Commerce-Fashion?type=design&node-id=0-1&mode=design&t=8DbpNfEjr5w2lJf8-0)
