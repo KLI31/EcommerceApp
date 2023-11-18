@@ -1,10 +1,11 @@
 import './App.css'
+import Login from './pages/login/login'
 
 function App() {
 
   return (
     <>
-      <h1>Ecommerce del viejo de base </h1>
+      <Login />
     </>
   )
 }
