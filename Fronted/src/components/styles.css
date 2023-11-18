@@ -1,0 +1,11 @@
+.button{
+    color: white;
+    border: none;
+    padding: 15px 65px;
+    font-size: 18px;
+}
+
+.button:hover {
+    transition: .3s ease-in;
+    transform: translateY(-5px);
+}
