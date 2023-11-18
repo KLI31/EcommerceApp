@@ -10,14 +10,14 @@ const BorderRadus = {
     xl: "7px",
 };
 
-const Button = ({ nombre, onClick, errorButton, borderRadius }) => {
+const Button = ({ nombre, onClick, errorButton, borderRadius, type }) => {
     const stylesProps = {
         backgroundColor: errorButton ? COLORS.errorButton : COLORS.SuccessButton,
         borderRadius: borderRadius ? BorderRadus.xl : BorderRadus.sm,
     };
 
     return (
-        <button onClick={onClick} style={stylesProps} className="button">
+        <button onClick={onClick} style={stylesProps} className="button" type={type}>
             {nombre}
         </button>
     );

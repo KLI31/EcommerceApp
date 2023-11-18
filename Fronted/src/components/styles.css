@@ -9,3 +9,33 @@
     transition: .3s ease-in;
     transform: translateY(-5px);
 }
+
+
+label{
+    font-size: 19px;
+}
+
+input{
+    padding: 15px 30px;
+    border-radius: 14px;
+    border: 1px solid #000;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.input-container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    right: 10px;
+    top: 47%;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
