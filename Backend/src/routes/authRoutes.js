@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../config/db');
 
@@ -9,11 +8,9 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
     try {
         const { Primer_nombre, Primer_Apellido, Contraseña, Correo_Electronico } = req.body;
-        const hashedPassword = await bcrypt.hash(Contraseña, 10);
-
         const sql = 'INSERT INTO usuario (Primer_nombre, Primer_Apellido, Contraseña, Correo_Electronico) VALUES (?, ?, ?, ?)';
         console.log('Solicitud recibida para crear usuarios');
-        db.query(sql, [Primer_nombre, Primer_Apellido, hashedPassword, Correo_Electronico], (err, result) => {
+        db.query(sql, [Primer_nombre, Primer_Apellido, Contraseña, Correo_Electronico], (err, result) => {
             if (err) {
                 console.log(err);
                 return res.status(500).send('Error en el servidor');
@@ -47,9 +44,12 @@ router.post('/login', (req, res) => {
             return res.status(401).send('Credenciales incorrectas');
         }
 
+        console.log('Contraseña ingresada:', Contraseña);
+        console.log('Contraseña en base de datos:', results[0].Contraseña);
+
         // Compara las contraseñas en texto plano
         if (Contraseña !== results[0].Contraseña) {
-            return res.status(401).send('Credenciales incorrectas');
+            return res.status(401).send('Credenciales incorrectas contraseña mala');
         }
 
         const token = jwt.sign({ id: results[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -66,7 +66,6 @@ router.get('/usuarios', (req, res) => {
         if (err) {
             res.status(500).send('Error al obtener los usuarios');
         } else {
-            // Enviar los resultados
             res.status(200).json(results);
         }
     });
