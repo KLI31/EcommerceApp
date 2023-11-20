@@ -3,6 +3,9 @@ import Button from "../../components/Button"
 import "./register.css"
 import { useState } from "react"
 import axios from "axios"
+import { toast, Toaster } from 'react-hot-toast';
+import { Link } from "react-router-dom"
+
 
 const register = () => {
     const [form, setForm] = useState({
@@ -12,13 +15,37 @@ const register = () => {
         Contraseña: "",
     })
 
+    const toastSuccess = () => toast.success('Registro exitoso', {
+        position: "top-right",
+        duration: 3000,
+        style: {
+            fontSize: '20px',
+            fontFamily: "Poppins"
+        }
+    });
+
+    const toastError = (errorMessage) => toast.error(errorMessage, {
+        position: "top-left",
+        duration: 3000,
+        style: {
+            fontSize: '20px',
+            fontFamily: "Poppins"
+        }
+    });
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:3001/api/register', form);
-            console.log(response.data); // Maneja la respuesta, como mostrar un mensaje de éxito
+            if (response.status === 201) {
+                toastSuccess()
+            }
         } catch (error) {
-            console.error('Error en el registro:', error);
+            let messageError = "No se pudo realizar el registro, intente nuevamente";
+            if (error.response && error.response.data) {
+                messageError = error.response.data.message || messageError;
+            }
+            toastError(messageError)
         }
     };
 
@@ -33,6 +60,7 @@ const register = () => {
 
     return (
         <section className="pantalla-dividida">
+            <Toaster />
             <div className="izquierda" />
             <div className="derecha">
                 <div className="container">
@@ -45,12 +73,10 @@ const register = () => {
 
                         <div className="button-container">
                             <Button nombre="Registrarme" borderRadius />
-                            <p>Tienes cuenta? <span>Inicia Sesion aqui</span></p>
+                            <p>Tienes cuenta? <Link to="/login"><span>Inicia Sesion aqui</span></Link></p>
                         </div>
                     </form>
                 </div>
-
-
             </div>
         </section>
     )
