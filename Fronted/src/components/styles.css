@@ -10,6 +10,27 @@
     transform: translateY(-5px);
 }
 
+.button.successButton{
+    background-color: #4B3C35;
+}
+
+.button.successButton:hover{
+    background-color: white;
+    color: #000;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.button.errorButton{
+    background-color: red;
+}
+
+.button.errorButton:hover{
+    background-color: white;
+    color: #000;
+    border: 1px solid black;
+    cursor: pointer;
+}
 
 label{
     font-size: 19px;
