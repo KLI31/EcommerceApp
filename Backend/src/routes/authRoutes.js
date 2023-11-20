@@ -27,28 +27,28 @@ router.post('/register', async (req, res) => {
 
 // Ruta de inicio de sesión
 router.post('/login', (req, res) => {
-    const { correo_Electronico, contraseña } = req.body;
+    const { Correo_Electronico, Contraseña } = req.body;
 
-    console.log('Solicitud recibida para iniciar sesión con:', correo_Electronico);
+    if (!Correo_Electronico || !Contraseña) {
+        return res.status(400).send('Correo electrónico y Contraseña son requeridos');
+    }
 
-    const sql = 'SELECT * FROM usuario WHERE correo_Electronico = ?';
-    db.query(sql, [correo_Electronico], async (err, results) => {
+    console.log('Solicitud recibida para iniciar sesión con:', Correo_Electronico);
+
+    const sql = 'SELECT * FROM usuario WHERE Correo_Electronico = ?';
+    db.query(sql, [Correo_Electronico], (err, results) => {
         if (err) {
             console.error('Error durante la consulta a la base de datos:', err);
             return res.status(500).send('Error en el servidor');
         }
-
-        console.log('Resultado de la consulta:', results);
 
         if (results.length === 0) {
             console.log('No se encontró el usuario');
             return res.status(401).send('Credenciales incorrectas');
         }
 
-        const esContraseñaCorrecta = await bcrypt.compare(contraseña, results[0].contraseña);
-        console.log('Contraseña correcta:', esContraseñaCorrecta);
-
-        if (!esContraseñaCorrecta) {
+        // Compara las contraseñas en texto plano
+        if (Contraseña !== results[0].Contraseña) {
             return res.status(401).send('Credenciales incorrectas');
         }
 
