@@ -1,12 +1,15 @@
 
+import "./home.css";
+import image from "../../assets/Fashion.png";
+
 const Home = () => {
     return (
         <div>
             Estoy en el home principal
-            {/* <section className="fashion-section">
+            { <section className="fashion-section">
                 <div className="fashion-image-container">
-                    {<image src="https://i.pinimg.com/736x/a0/0d/8a/a00d8a8f55adab14c565750d655d4af7.jpg" alt="Fashion" />}
-                    <img src="path_to_your_image.jpg" alt="Fashion" />
+
+                    <img src={image} alt="Fashion" />
                 </div>
 
                 <div className="fashion-content">
@@ -27,7 +30,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </section> */}
+            </section> }
         </div>
     );
 };
