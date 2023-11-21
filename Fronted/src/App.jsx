@@ -11,9 +11,10 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="/" element={<Layout />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<Layout />} />
+          <Route path="/home/*" element={<Layout />} />
         </Routes>
       </Router>
     </AuthProvider>
