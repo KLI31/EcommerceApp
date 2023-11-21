@@ -1,6 +1,6 @@
 import "./login.css";
 import { useContext, useState } from "react";
-import Button from "../../components/Button";
+import { Button } from "../../components/Button";
 import { PasswordInput, Input } from "../../components/Input";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -17,6 +17,7 @@ const login = () => {
     const navigate = useNavigate();
 
 
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -25,6 +26,7 @@ const login = () => {
             const response = await axios.post('http://localhost:3001/api/login', { Correo_Electronico: Correo_Electronico, Contraseña: Contraseña });
             if (response.status === 200) {
                 login(response.data.userData, response.data.token, navigate);
+
             } else {
                 console.error('Error en el inicio de sesión');
             }

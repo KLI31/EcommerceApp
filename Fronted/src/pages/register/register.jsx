@@ -1,5 +1,5 @@
 import { Input, PasswordInput } from "../../components/Input"
-import Button from "../../components/Button"
+import { Button } from "../../components/Button"
 import "./register.css"
 import { useState } from "react"
 import axios from "axios"
