@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
 });
 
 // Ruta de inicio de sesión
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     const { Correo_Electronico, Contraseña } = req.body;
 
     if (!Correo_Electronico || !Contraseña) {
@@ -44,19 +44,21 @@ router.post('/login', (req, res) => {
             return res.status(401).send('Credenciales incorrectas');
         }
 
-        console.log('Contraseña ingresada:', Contraseña);
-        console.log('Contraseña en base de datos:', results[0].Contraseña);
-
-        // Compara las contraseñas en texto plano
         if (Contraseña !== results[0].Contraseña) {
-            return res.status(401).send('Credenciales incorrectas contraseña mala');
+            return res.status(401).send('Credenciales incorrectas');
         }
 
         const token = jwt.sign({ id: results[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(200).json({ message: 'Inicio de sesión exitoso', token });
+
+        res.json({
+            token,
+            userData: {
+                Primer_nombre: results[0].Primer_nombre,
+                Primer_Apellido: results[0].Primer_Apellido
+            }
+        });
     });
 });
-
 
 
 // Ruta para obtener todos los usuarios
