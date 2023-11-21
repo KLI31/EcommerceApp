@@ -154,3 +154,45 @@ input{
     color: white;
     transition: .3s ease-in;
 }
+
+.footer {
+    background-color: #34251F; /* Ajusta el color de fondo al de tu diseño */
+    color: white;
+    font-family: 'Lato', sans-serif; /* Cambia la fuente según tus necesidades */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-top {
+    background-color: #8B8378; /* Color más claro para la parte superior del footer */
+    padding: 10px 0;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    gap: 20px; /* Espacio entre los elementos de navegación */
+}
+
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+@media (max-width: 768px) {
+    .footer-nav {
+        flex-direction: column; /* Apila los enlaces en dispositivos móviles */
+    }
+}
