@@ -19,4 +19,16 @@ const Button = ({ nombre, onClick, errorButton, borderRadius, type }) => {
 };
 
 
-export default Button
+const OutlineButton = ({ nombre, onClick, borderRadius }) => {
+    const stylesProps = {
+        borderRadius: borderRadius ? BorderRadus.xl : BorderRadus.sm,
+    };
+
+    return (
+        <button onClick={onClick} style={stylesProps} className="outlineButton">
+            {nombre}
+        </button>
+    );
+};
+
+export { Button, OutlineButton }

@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
-
+import { OutlineButton } from "./Button"
 
 const Navbar = () => {
 
@@ -9,33 +9,48 @@ const Navbar = () => {
 
 
     return (
-        <nav>
+        <div className="navbar">
             <div className="logo">
-                <h2>Logo</h2>
+                <h2>FIFASH</h2>
             </div>
-            <ul className="links">
-                <li>
-                    <Link to="/home">Home</Link>
-                </li>
-                <li>
-                    <Link to="/profile">Profile</Link>
-                </li>
-                {user ? (
+            <div className="links">
+                <ul>
                     <li>
-                        <button onClick={logout}>Logout</button>
+                        <Link className="my-link">Nuevo</Link>
                     </li>
+                    <li>
+                        <Link className="my-link">Ropa</Link>
+                    </li>
+                    <li>
+                        <Link className="my-link">Estilos</Link>
+                    </li>
+                    <li>
+                        <Link className="my-link">Contacto</Link>
+                    </li>
+                </ul>
+            </div>
+            <div className="navbar-section">
+                {user ? (
+                    <ul>
+                        <div>
+                            <h4>{user.Primer_nombre}</h4>
+                            <h4>{user.Primer_Apellido}</h4>
+                        </div>
+                        <li>
+                            <Link to="/home" onClick={() => logout()}>Cerrar Sesion</Link>
+                        </li>
+                    </ul>
                 ) : (
-                    <>
+                    <ul>
                         <li>
-                            <Link to="/login">Login</Link>
+                            <Link to="/login">
+                                <OutlineButton nombre="Iniciar Sesion" />
+                            </Link>
                         </li>
-                        <li>
-                            <Link to="/register">Register</Link>
-                        </li>
-                    </>
+                    </ul>
                 )}
-            </ul>
-        </nav>
+            </div>
+        </div >
     )
 }
 

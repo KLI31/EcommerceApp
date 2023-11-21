@@ -82,7 +82,7 @@ input{
 
 .card-image {
     width: 100%;
-    display: block; /* Ensures the image scales correctly */
+    display: block; 
     height: auto;
 }
 
@@ -94,5 +94,63 @@ input{
     font-size: 1em;
     color: #333;
     text-align: center;
-    margin: 0; /* Removes default paragraph margin */
+    margin: 0; 
+}
+
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    color: #4B3C35;
+}
+
+.logo{
+    font-size: 15px;
+    align-items: center;
+    font-weight: 400;
+}
+
+
+.links ul{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    align-items: center;
+}
+
+.my-link{
+    color: #4B3C35;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.navbar-section ul{
+    display: flex;
+    gap: 15px;
+    list-style: none;
+}
+
+.button-section{
+    background-color: aqua;
+    margin: 2px;
+}
+
+.outlineButton{
+    background-color: transparent;
+    border: 1px solid #4B3C35;
+    color: #4B3C35;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.outlineButton:hover{
+    background-color: #4B3C35;
+    color: white;
+    transition: .3s ease-in;
 }
