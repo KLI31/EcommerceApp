@@ -1,10 +1,12 @@
+import React from "react";
 import "./styles.css";
+
 
 const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-top">
-                <span>Síguenos En Instagram: @Fifash_Trends</span>
+                <span>Síguenos en Instagram: @fifash_trends</span>
             </div>
             <div className="footer-nav">
                 <a href="/hombres">HOMBRES</a>
@@ -14,7 +16,7 @@ const Footer = () => {
                 <a href="/faq">FAQ</a>
             </div>
             <div className="footer-bottom">
-                <span>© 2023 FIFAH. Todos Los Derechos Reservados</span>
+                <span>© 2023 FIFASH. Todos Los Derechos Reservados</span>
             </div>
         </footer>
     );
