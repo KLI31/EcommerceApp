@@ -1,17 +1,13 @@
-
 import "./home.css";
 import image from "../../assets/Fashion.png";
 
 const Home = () => {
     return (
-        <div>
-            Estoy en el home principal
-            { <section className="fashion-section">
+        <div className="home-container">
+            <section className="fashion-section">
                 <div className="fashion-image-container">
-
                     <img src={image} alt="Fashion" />
                 </div>
-
                 <div className="fashion-content">
                     <h2>Mejor Moda Desde 2014</h2>
                     <p>Desde 2014, nuestra moda redefine tendencias con calidad y diseño vanguardista. Cada pieza refleja nuestro compromiso con la innovación y el estilo, convirtiéndonos en un referente para los amantes de la moda.</p>
@@ -30,10 +26,9 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </section> }
+            </section>
         </div>
     );
 };
 
 export default Home;
-
