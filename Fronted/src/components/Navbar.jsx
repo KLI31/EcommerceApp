@@ -3,13 +3,13 @@ import { Link } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 import { OutlineButton } from "./Button"
 
-const Navbar = () => {
+const Navbar = ({ backgroundColor }) => {
 
     const { user, logout } = useContext(AuthContext)
 
 
     return (
-        <div className="navbar">
+        <div className="navbar" style={{ backgroundColor: backgroundColor }}>
             <div className="logo">
                 <h2>FIFASH</h2>
             </div>
@@ -32,12 +32,15 @@ const Navbar = () => {
             <div className="navbar-section">
                 {user ? (
                     <ul>
-                        <div>
+                        <div className="user-info">
+                            <h4>Inicio de sesion:</h4>
                             <h4>{user.Primer_nombre}</h4>
                             <h4>{user.Primer_Apellido}</h4>
                         </div>
                         <li>
-                            <Link to="/home" onClick={() => logout()}>Cerrar Sesion</Link>
+                            <Link to="/home">
+                                <OutlineButton nombre="Cerrar Sesion" onClick={logout} />
+                            </Link>
                         </li>
                     </ul>
                 ) : (

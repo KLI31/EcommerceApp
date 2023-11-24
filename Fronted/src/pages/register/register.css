@@ -1,7 +1,3 @@
-body{
-    overflow: hidden;
-}
-
 .pantalla-dividida{
     display: flex;
 }
@@ -32,6 +28,7 @@ body{
     font-size: 63px;
     font-weight: bold;
     color: #34251F;
+    font-family: "Frank Ruhl Libre";
 }
 
 .button-container{

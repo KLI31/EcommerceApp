@@ -8,7 +8,7 @@ const Layout = () => {
 
     return (
         <>
-            {location.pathname !== '/login' && location.pathname !== '/register' && <Navbar />}
+            {location.pathname !== '/login' && location.pathname !== '/register' && <Navbar backgroundColor="#EEDDCC" />}
             <div>
                 <Routes>
                     <Route path="/" element={<Home />} />

@@ -5,6 +5,74 @@
   
 }
 
+body{
+  overflow: auto;
+}
+
+
+.hero-section{
+  justify-content: center;
+  align-items: center;
+  background-color: #EEDDCC;
+  padding: 45px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.hero-container{
+  display: flex;
+  align-items: center;;
+}
+
+.hero-content{
+  padding: 30px;
+}
+
+.hero-content h1{
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 4.5em;
+  font-weight: 700;
+  line-height: 1em;
+  color: #34251F;
+  margin-bottom: 0.5em;
+  width: 45%;
+}
+
+
+.hero-content p {
+  font-size: 1.5em;
+  font-weight: 400;
+  line-height: 1.5em;
+  color: #34251F;
+  margin-bottom: 1.5em;
+  width: 40%;
+  margin-bottom: 70px;
+}
+
+
+
+.image-content img{
+  width: 500px;
+  height: 650px;
+  border-radius: 20px;
+  border-bottom-left-radius: 120px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0px;
+  object-fit: cover;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/decoration.svg') no-repeat bottom;
+  z-index: -999;
+}
+
+
 .home-container {
     display: flex;
     justify-content: center;
@@ -20,9 +88,6 @@
     justify-content: center;
     background-color: #ffffff;
     padding: 50px;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 1200px;
     margin: auto;
 }
 
@@ -36,7 +101,7 @@
     height: auto;
     border-radius: 20px 0 0 20px;
     object-fit: cover;
-    clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 300%);
 }
 
 .fashion-content {
@@ -52,7 +117,7 @@
     font-weight: 700;
     line-height: 78px;
     text-transform: capitalize;
-    margin: 0; /* Elimina márgenes predeterminados */
+    margin: 0; 
 }
 
 .fashion-content h2 {
@@ -64,9 +129,9 @@
     color: var(--color-primary-dark-brown);
     font-size: 20px;
     font-weight: 400;
-    line-height: 180%; /* Esto dará un line-height de alrededor de 36px */
+    line-height: 180%; 
     text-transform: capitalize;
-    margin-top: 20px; /* Ajusta según sea necesario */
+    margin-top: 20px; 
 }
 .fashion-stats .stat h3, .fashion-stats .stat p {
     color: var(--color-primary-dark-brown);
