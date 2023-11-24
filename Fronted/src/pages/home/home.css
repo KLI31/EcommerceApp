@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700&family=Lato:wght@400&display=swap');
 
 :root {
-    --color-primary-dark-brown: #34251F; /* Define el color primario marrón oscuro */
+    --color-primary-dark-brown: #34251F;
+  
 }
 
 .home-container {
@@ -17,10 +18,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     padding: 50px;
     border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 1200px;
     margin: auto;
@@ -43,7 +43,7 @@
     flex-basis: 60%;
     padding: 20px 50px;
     text-align: left;
-    color: #333;
+    color: #34251F;
 }
 
 .fashion-content h1, .fashion-content h2 {
@@ -80,7 +80,7 @@
 }
 
 .stat {
-    margin-right: 50px; /* Adjust as needed for spacing */
+    margin-right: 50px;
 }
 
 .stat h3 {
@@ -92,7 +92,6 @@
     margin-top: 5px;
 }
 
-/* Añade media queries si es necesario para manejar la responsividad */
 
 @media (max-width: 768px) {
     .fashion-section {
@@ -107,4 +106,145 @@
     .fashion-content {
         width: 100%;
     }
+}
+
+
+/* REVIEWS */
+
+.review-section {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #fff;
+}
+
+.review-header h2 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  color: #34251F;
+}
+
+.review-header p {
+  font-size: 1em;
+  margin-bottom: 2em;
+  color: #34251F;
+text-align: center;
+font-family: Lato;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 180%;
+}
+
+.review-slider {
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination {
+  position: static !important;
+  text-align: center !important;
+  padding-top: 20px !important;
+}
+
+.swiper .swiper-pagination-bullet {
+  border: 2px solid #34251F !important;
+  opacity: 0.5 !important;
+  background: transparent !important;
+  border-radius: 50%;
+}
+
+.swiper .swiper-pagination-bullet-active {
+  background: #34251F !important; 
+  border: none !important;
+  opacity: 1 !important;
+}
+
+.review-card {
+  display: flex; /* This will apply flexbox */
+  justify-content: center; /* This will center the children horizontally */
+  align-items: center; /* This will center the children vertically */
+  flex-direction: column; /* This stacks children vertically */
+  flex: none;
+  width: 650px;
+  margin: 0 15px;
+  padding: 20px;
+  background-color: #faf2ea;
+  border-radius: 3px;
+  border: 1px solid #ffffff;
+}
+
+
+.review-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 70%; /* Creates a circle */
+}
+
+.review-card .image-container {
+  display: flex;
+  padding-top: 25px;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Ensuring the container has a fixed height can help with vertical centering */
+}
+
+
+.review-card h3 {
+  color: var(--color-primary-dark-brown, #34251F);
+  text-align: center;
+  font-family: Lato;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 25px; /* 28.259px */
+  padding-top: 3%;
+  padding-left: 13%;
+  padding-right: 13%;
+
+}
+
+.review-card p {
+  font-family: Lato;
+font-size: 17px;
+font-style: normal;
+font-weight: 400;
+line-height: 30px;
+opacity: 0.8;
+padding-left: 5%;
+padding-right: 5%;
+}
+
+.review-card:not(:last-child) {
+  margin-right: 30px;
+  
+}
+
+@media (max-width: 768px) {
+  .review-card {
+    width: 80%;
+    margin: 0 auto;
+  }
 }

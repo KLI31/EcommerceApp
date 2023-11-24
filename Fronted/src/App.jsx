@@ -4,6 +4,8 @@ import Register from './pages/register/register'
 import Layout from './components/Layout'
 import { AuthProvider } from './context/AuthContext'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+
 function App() {
 
 
