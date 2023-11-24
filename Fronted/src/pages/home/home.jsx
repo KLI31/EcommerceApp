@@ -1,4 +1,3 @@
-
 import "./home.css";
 import image from "../../assets/Fashion.png";
 import Footer from "../../components/Footer";
