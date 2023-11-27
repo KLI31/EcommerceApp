@@ -1,13 +1,15 @@
 .button{
     color: white;
     border: none;
-    padding: 15px 65px;
-    font-size: 18px;
+    padding: 19px 69px;
+    font-size: 16px;
+    font-family: lato;
+    font-weight: 900;
 }
 
 .button:hover {
-    transition: .3s ease-in;
-    transform: translateY(-5px);
+    transition: 0.2s ease-in;
+    transform: translateY(-3px); 
 }
 
 .button.successButton{
@@ -15,9 +17,9 @@
 }
 
 .button.successButton:hover{
-    background-color: white;
-    color: #000;
-    border: 1px solid black;
+    background-color: transparent;
+    color: #4B3C35;
+    border: 1px solid #4B3C35;
     cursor: pointer;
 }
 
@@ -59,6 +61,7 @@ input{
     justify-content: center;
     align-items: center;
     font-size: 20px;
+    
 }
 
 .CardCollection {
@@ -101,20 +104,22 @@ input{
 .navbar{
     display: flex;
     justify-content: space-between;
-    padding: 15px 30px;
+    padding: 3% 13%;
     color: #4B3C35;
+    font-family: Lato;
 }
 
 .logo{
-    font-size: 15px;
+    font-size: 90%;
     align-items: center;
-    font-weight: 400;
+    font-weight: 900;
+    font-family: Lato;
 }
 
 
 .links ul{
     display: flex;
-    gap: 20px;
+    gap: 20%;
     list-style: none;
     align-items: center;
 }
@@ -128,7 +133,7 @@ input{
 
 .navbar-section ul{
     display: flex;
-    gap: 15px;
+    gap: 5%;
     list-style: none;
 }
 
@@ -152,7 +157,7 @@ input{
 .outlineButton:hover{
     background-color: #4B3C35;
     color: white;
-    transition: .3s ease-in;
+    transition: .2s ease-in;
 }
 
 .footer {
@@ -176,6 +181,7 @@ input{
     font-weight: 450;
     font-size: 18px;
     
+    
 }
 
 .footer-nav {
@@ -184,7 +190,7 @@ input{
     padding: 10% 0;
     font-weight: 500;
     letter-spacing: 1.5px;
-    gap: 40px; 
+    gap: 40px;
 }
 
 
@@ -213,7 +219,51 @@ padding: 2.7%;
 
 }
 
+
+
+
+
 @media (max-width: 768px) {
+
+    
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 7% 9%;
+    color: #4B3C35;
+    font-family: Lato;
+    font-weight: 700;
+}
+
+.logo{
+    font-size: 80%;
+    align-items: left;
+    font-weight: 900;
+    font-family: Lato;
+}
+
+
+.links ul{
+    display: flex;
+    gap: 7%;
+    list-style: none;
+    align-items: center;
+}
+
+
+.button-section{
+    margin: 2px;
+}
+
+.outlineButton{
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
     .footer-nav {
         flex-direction: column;
     }

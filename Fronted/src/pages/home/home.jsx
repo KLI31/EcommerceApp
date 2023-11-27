@@ -18,9 +18,9 @@ const Home = () => {
                 <section className="hero-section">
                     <div className="hero-container">
                         <div className="hero-content">
-                            <h1>Encuentra El Mejor Estilo De Moda</h1>
+                            <h1>Encuentra el mejor estilo de moda</h1>
                             <p>Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Sed Ullamcorper Congue Eros, Eget Tincidunt Ipsum Eleifend Ut.</p>
-                            <Button nombre="comprar" />
+                            <Button nombre="COMPRAR" />
                         </div>
                         <div className="image-content">
                             <img src={image} alt="imagen_prueba" />

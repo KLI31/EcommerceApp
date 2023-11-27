@@ -16,16 +16,16 @@ const Navbar = ({ backgroundColor }) => {
             <div className="links">
                 <ul>
                     <li>
-                        <Link className="my-link">Nuevo</Link>
+                        <Link className="my-link">NUEVO</Link>
                     </li>
                     <li>
-                        <Link className="my-link">Ropa</Link>
+                        <Link className="my-link">ROPA</Link>
                     </li>
                     <li>
-                        <Link className="my-link">Estilos</Link>
+                        <Link className="my-link">ESTILOS</Link>
                     </li>
                     <li>
-                        <Link className="my-link">Contacto</Link>
+                        <Link className="my-link">CONTACTO</Link>
                     </li>
                 </ul>
             </div>
@@ -39,7 +39,7 @@ const Navbar = ({ backgroundColor }) => {
                         </div>
                         <li>
                             <Link to="/home">
-                                <OutlineButton nombre="Cerrar Sesion" onClick={logout} />
+                                <OutlineButton nombre="CERRAR SESIÓN" onClick={logout} />
                             </Link>
                         </li>
                     </ul>
@@ -47,7 +47,7 @@ const Navbar = ({ backgroundColor }) => {
                     <ul>
                         <li>
                             <Link to="/login">
-                                <OutlineButton nombre="Iniciar Sesion" />
+                                <OutlineButton nombre="INICIAR SESIÓN" />
                             </Link>
                         </li>
                     </ul>

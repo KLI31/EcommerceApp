@@ -17,12 +17,12 @@ body{
   padding: 45px;
   position: relative;
   overflow: hidden;
+  
 }
-
 
 .hero-container{
   display: flex;
-  align-items: center;;
+  align-items: center;
 }
 
 .hero-content{
@@ -39,7 +39,6 @@ body{
   width: 45%;
 }
 
-
 .hero-content p {
   font-size: 1.5em;
   font-weight: 400;
@@ -48,9 +47,8 @@ body{
   margin-bottom: 1.5em;
   width: 40%;
   margin-bottom: 70px;
+  font-family: lato;
 }
-
-
 
 .image-content img{
   width: 500px;
@@ -72,7 +70,6 @@ body{
   z-index: -999;
 }
 
-
 .home-container {
     display: flex;
     justify-content: center;
@@ -82,38 +79,43 @@ body{
     box-sizing: border-box;
 }
 
+
+/* FASHION */ 
+
+
 .fashion-section {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
-    padding: 50px;
+    padding: 15px;
     margin: auto;
 }
 
 .fashion-image-container {
-    flex-basis: 40%;
+    flex-basis: 35%;
     position: relative;
+    height: 500px;
 }
 
 .fashion-image-container img {
     width: 100%;
-    height: auto;
-    border-radius: 20px 0 0 20px;
+    height: 100%;
+    border-radius: 15px 0 0 00px;
     object-fit: cover;
-    clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 300%);
+    margin-bottom: 20px;
+    border-top-left-radius: 120px;
 }
 
 .fashion-content {
     flex-basis: 60%;
-    padding: 20px 50px;
+    padding: 20px 100px;
     text-align: left;
     color: #34251F;
 }
 
 .fashion-content h1, .fashion-content h2 {
     color: var(--color-primary-dark-brown);
-    font-size: 68px;
     font-weight: 700;
     line-height: 78px;
     text-transform: capitalize;
@@ -131,13 +133,15 @@ body{
     font-weight: 400;
     line-height: 180%; 
     text-transform: capitalize;
-    margin-top: 20px; 
+    margin-top: 15px;
+    font-family: lato;
 }
 .fashion-stats .stat h3, .fashion-stats .stat p {
     color: var(--color-primary-dark-brown);
     text-transform: capitalize;
+    line-height: 120%; 
+    text-align: center;
 }
-
 
 .fashion-stats {
     display: flex;
@@ -155,22 +159,6 @@ body{
 
 .stat p {
     margin-top: 5px;
-}
-
-
-@media (max-width: 768px) {
-    .fashion-section {
-        flex-direction: column;
-    }
-
-    .fashion-image-container {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .fashion-content {
-        width: 100%;
-    }
 }
 
 
@@ -205,7 +193,6 @@ line-height: 180%;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
-
 
 .swiper {
   width: 100%;
@@ -248,10 +235,10 @@ line-height: 180%;
 }
 
 .review-card {
-  display: flex; /* This will apply flexbox */
-  justify-content: center; /* This will center the children horizontally */
-  align-items: center; /* This will center the children vertically */
-  flex-direction: column; /* This stacks children vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   flex: none;
   width: 650px;
   margin: 0 15px;
@@ -265,7 +252,7 @@ line-height: 180%;
 .review-card img {
   width: 90px;
   height: 90px;
-  border-radius: 70%; /* Creates a circle */
+  border-radius: 70%;
 }
 
 .review-card .image-container {
@@ -273,7 +260,7 @@ line-height: 180%;
   padding-top: 25px;
   justify-content: center;
   align-items: center;
-  height: 100px; /* Ensuring the container has a fixed height can help with vertical centering */
+  height: 100px;
 }
 
 
@@ -284,7 +271,7 @@ line-height: 180%;
   font-size: 24px;
   font-style: normal;
   font-weight: 900;
-  line-height: 25px; /* 28.259px */
+  line-height: 25px;
   padding-top: 3%;
   padding-left: 13%;
   padding-right: 13%;
@@ -306,10 +293,168 @@ padding-right: 5%;
   margin-right: 30px;
   
 }
-
 @media (max-width: 768px) {
-  .review-card {
-    width: 80%;
-    margin: 0 auto;
+  
+  .home-container {
+      flex-direction: column;
   }
+
+
+
+  .hero-section {
+      padding: 20px;
+      text-align: center;
+      flex-direction: column;
+  }
+
+  .hero-container{
+    flex-direction: column;
+  }
+
+  .hero-content{
+    font-size: 0.7em;
+    text-align: center;
+    padding: 1em;
+
+  }
+
+.image-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom-left-radius: 70px;
+}
+
+
+
+  
+  .fashion-section {
+      flex-direction: column;
+  }
+
+  .fashion-image-container img {
+      width: 100%;
+      height: auto;
+  }
+
+  .fashion-content {
+      padding: 20px;
+  }
+
+  .fashion-content h1, .fashion-content h2 {
+      font-size: 2em;
+      line-height: 1.2em;
+      text-align: center;
+  }
+
+  .fashion-content p {
+      font-size: 1em;
+      text-align: center;
+  }
+
+  .fashion-stats .stat {
+      margin-right: 20px;
+  }
+
+
+
+  .review-section {
+      padding: 20px;
+  }
+
+  .review-card {
+    padding: 0.5em;
+    margin-bottom: 20px;
+  }
+
+  .review-header h2 {
+    font-size: 2em;
+  }
+
+  .review-header p {
+    font-size: 1.2em;
+    line-height: 1.5em;
+  }
+
+  .review-slider {
+      flex-direction: column;
+  }
+
+  .review-card img {
+      width: 60px;
+      height: 60px;
+  }
+
+  .review-card h3 {
+      font-size: 1em;
+  }
+
+  .review-card p {
+      font-size: 0.7em;
+      line-height: 1.7em;
+  }
+}
+
+
+
+
+
+
+
+@media (max-width: 2000px) {
+
+.hero-section{
+  justify-content: center;
+  align-items: center;
+  background-color: #EEDDCC;
+  padding: 150px;
+  padding-top: 2.5%;
+  padding-bottom: 10%;
+  position: relative;
+  overflow: hidden;
+  
+}
+
+.hero-container{
+display: flex;
+align-items: center;
+}
+
+.hero-content h1{
+font-family: 'Frank Ruhl Libre', serif;
+font-size: 4.5em;
+font-weight: 700;
+line-height: 1em;
+color: #34251F;
+margin-bottom: 0.5em;
+width: 70%;
+}
+
+.hero-content p{
+width: 70%;
+}
+
+.fashion-section{
+  padding: 8%;
+
+}
+
+/* .fashion-image-container img {
+    margin-bottom: 20px;
+    width: 500px;
+  height: 650px;
+  border-radius: 20px;
+  border-bottom-left-radius: 120px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0px;
+  object-fit: cover;
+} */
+
+.fashion-content {
+    width: 100%;
+}
+
+
+
 }
