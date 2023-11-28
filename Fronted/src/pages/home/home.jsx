@@ -1,19 +1,38 @@
-import "./home.css"
+import "./home.css";
 import image from "../../assets/Fashion.png";
 import Footer from "../../components/Footer";
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
-import { Button } from "../../components/Button"
+import { Button } from "../../components/Button";
+import React, { useState, useEffect } from 'react';
+import { Product } from './product';
+import axios from 'axios';
+
+const URI = 'http://localhost:3001/api/productos/';
 
 const Home = () => {
-    window.scrollTo(0, 0);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const getProducts = async () => {
+            try {
+                const res = await axios.get(URI);
+                setProducts(res.data);
+            } catch (error) {
+                console.error("Error al obtener los productos:", error);
+            }
+        };
+
+        getProducts();
+    }, []);
 
     return (
         <main>
-            {/*HERO*/}
+            {/* HERO */}
+            { }
             <div>
                 <section className="hero-section">
                     <div className="hero-container">
@@ -29,7 +48,7 @@ const Home = () => {
                 </section>
             </div>
 
-            {/*ABOUT US*/}
+            {/* ABOUT US */}
             <div>
                 <section className="fashion-section">
                     <div className="fashion-image-container">
@@ -56,7 +75,19 @@ const Home = () => {
                 </section>
             </div>
 
-            {/*REVIEWS*/}
+            {/* PRODUCTS */}
+            <div className="shop">
+                <div className="shopTitle">
+                    <h1>Nuestros productos</h1>
+                </div>
+                <div className="products">
+                    {products.map((product) => (
+                        <Product key={product.id} data={product} />
+                    ))}
+                </div>
+            </div>
+
+            {/* REVIEWS */}
             <div>
                 <section className="review-section">
                     <div className="review-header">
@@ -135,13 +166,13 @@ const Home = () => {
                         </SwiperSlide>
                     </Swiper>
                 </section>
-
             </div>
+            {/* FOOTER */}
             <footer>
                 <Footer />
             </footer>
         </main>
     );
-}
+};
 
 export default Home;

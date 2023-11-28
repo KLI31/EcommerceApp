@@ -298,6 +298,108 @@ padding-right: 5%;
   .home-container {
       flex-direction: column;
   }
+}
+
+
+.shopTitle {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 40px;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta para una grilla responsiva */
+  gap: 2rem; /* Espacio entre productos */
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.product {
+  border-radius: 15px;
+  width: 100%; /* Para que ocupe el espacio de la grilla */
+  height: auto; /* Altura automática para mantener la relación de aspecto */
+  margin: 0; /* Quitar el margen para que la grilla maneje el espaciado */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinear contenido al principio */
+  align-items: center;
+  background-color: #fff; /* Fondo blanco para las tarjetas */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave para las tarjetas */
+  transition: transform 0.3s ease-in-out; /* Transición suave para el hover */
+}
+
+@keyframes slide {
+  0% {margin-left: 0%;}
+  33% {margin-left: 0%;}
+
+  35% {margin-left: -100%;}
+  66% {margin-left: -100%;}
+
+  69% {margin-left: -200%;}
+  99% {margin-left: -200%;}
+}
+
+.slide-var {
+  width: 50%;
+  margin: 50px auto 0;
+  overflow: hidden;
+}
+
+.slide-var ul {
+  display: flex;
+  padding: 0;
+  width: 300%;
+  animation: slide 12s infinite alternate ease-in-out;
+}
+
+.slide-var li {
+  list-style: none;
+  width: 100%;
+}
+
+.slide-var img {
+  width: 100%;
+}
+
+.product .description {
+  padding: 1rem;
+  text-align: center;
+}
+
+.product .descripcion {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.product .price {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.product:hover {
+  transform: translateY(-5px); /* Eleva la tarjeta ligeramente al hacer hover */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15); 
+}
+
+.addToCartBttn {
+  background-color: transparent;
+  border: 2px solid rgb(19, 19, 19);
+  min-width: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 15px;
+}
+
+.addToCartBttn:hover {
+  background-color: rgb(19, 19, 19);
+  color: white;
+  cursor: pointer;
 
 
 
