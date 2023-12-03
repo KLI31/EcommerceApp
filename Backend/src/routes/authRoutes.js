@@ -9,7 +9,6 @@ router.post('/register', async (req, res) => {
     try {
         const { Primer_nombre, Primer_Apellido, Contraseña, Correo_Electronico } = req.body;
         const sql = 'INSERT INTO usuario (Primer_nombre, Primer_Apellido, Contraseña, Correo_Electronico) VALUES (?, ?, ?, ?)';
-        console.log('Solicitud recibida para crear usuarios');
         db.query(sql, [Primer_nombre, Primer_Apellido, Contraseña, Correo_Electronico], (err, result) => {
             if (err) {
                 console.log(err);
@@ -30,8 +29,6 @@ router.post('/login', async (req, res) => {
         return res.status(400).send('Correo electrónico y Contraseña son requeridos');
     }
 
-    console.log('Solicitud recibida para iniciar sesión con:', Correo_Electronico);
-
     const sql = 'SELECT * FROM usuario WHERE Correo_Electronico = ?';
     db.query(sql, [Correo_Electronico], (err, results) => {
         if (err) {
@@ -47,12 +44,13 @@ router.post('/login', async (req, res) => {
         if (Contraseña !== results[0].Contraseña) {
             return res.status(401).send('Credenciales incorrectas');
         }
-
-        const token = jwt.sign({ id: results[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const user = results[0];
+        const token = jwt.sign({ id: user.id_user }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.json({
             token,
             userData: {
+                id: user.id_user,
                 Primer_nombre: results[0].Primer_nombre,
                 Primer_Apellido: results[0].Primer_Apellido
             }

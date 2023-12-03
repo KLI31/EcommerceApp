@@ -4,13 +4,17 @@ const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
-    if (token == null) return res.sendStatus(401);
+    if (!token) {
+        return res.status(401).json({ message: 'Acceso denegado. No se encontró el token.' });
+    }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403);
-        req.user = user;
+    try {
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = verified;
         next();
-    });
+    } catch (error) {
+        res.status(403).json({ message: 'Token no válido o expirado.' });
+    }
 };
 
 module.exports = authenticateToken;
