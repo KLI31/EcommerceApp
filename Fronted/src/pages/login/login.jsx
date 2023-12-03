@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
+import SERVICE_PATH from "../../utils/networking";
+
 
 const login = () => {
     const [form, setForm] = useState({
@@ -23,7 +25,7 @@ const login = () => {
 
         try {
             // Aquí, reemplaza 'tuAPI' con la URL de tu backend
-            const response = await axios.post('http://localhost:3001/api/login', { Correo_Electronico: Correo_Electronico, Contraseña: Contraseña });
+            const response = await axios.post(SERVICE_PATH.login, { Correo_Electronico: Correo_Electronico, Contraseña: Contraseña });
             if (response.status === 200) {
                 login(response.data.userData, response.data.token, navigate);
 
@@ -74,7 +76,7 @@ const login = () => {
                             <Button nombre="Iniciar Sesion" borderRadius type="submit" />
                             <p>
                                 No tienes cuenta
-                                <Link to="/register">
+                                <Link className="text2" to="/register">
                                     <span>Registrate aqui</span>
                                 </Link>
                             </p>

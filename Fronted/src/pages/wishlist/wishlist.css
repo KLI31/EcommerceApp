@@ -1,0 +1,50 @@
+/* WishlistPage.css */
+.wishlist-page {
+    padding: 20px;
+    color: #FFF;
+    background-color: #000; /* Fondo negro como en el boceto */
+}
+
+.wishlist-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.wishlist-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.wishlist-item {
+    border: 1px solid #FFF; /* Bordes blancos como en el boceto */
+    padding: 10px;
+    width: calc(30% - 20px); /* Dos elementos por fila con espacio entre ellos */
+}
+
+.wishlist-item img {
+    width: 100%; /* Ajusta la imagen al contenedor */
+    height: auto; /* Mantiene la relación de aspecto */
+    margin-bottom: 10px;
+}
+
+.item-details {
+    text-align: center;
+}
+
+.add-to-cart {
+    background-color: #FFF; /* Fondo blanco para el botón */
+    color: #000; /* Texto negro para el botón */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Ajusta los estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .wishlist-item {
+        width: 100%; /* Un elemento por fila en dispositivos móviles */
+    }
+}

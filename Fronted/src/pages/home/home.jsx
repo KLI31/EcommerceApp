@@ -7,11 +7,10 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import { Button } from "../../components/Button";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Product } from './product';
 import axios from 'axios';
-
-const URI = 'http://localhost:3001/api/productos/';
+import SERVICE_PATH from "../../utils/networking";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -19,7 +18,7 @@ const Home = () => {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const res = await axios.get(URI);
+                const res = await axios.get(SERVICE_PATH.getProducts);
                 setProducts(res.data);
             } catch (error) {
                 console.error("Error al obtener los productos:", error);
@@ -31,8 +30,7 @@ const Home = () => {
 
     return (
         <main>
-            {/* HERO */}
-            { }
+
             <div>
                 <section className="hero-section">
                     <div className="hero-container">

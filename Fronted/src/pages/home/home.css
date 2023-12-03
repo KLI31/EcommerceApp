@@ -114,12 +114,12 @@ body{
     color: #34251F;
 }
 
-.fashion-content h1, .fashion-content h2 {
+.fashion-content h2 {
     color: var(--color-primary-dark-brown);
     font-weight: 700;
     line-height: 78px;
-    text-transform: capitalize;
     margin: 0; 
+    font-size: 490px;
 }
 
 .fashion-content h2 {
@@ -308,8 +308,8 @@ padding-right: 5%;
 }
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta para una grilla responsiva */
-  gap: 2rem; /* Espacio entre productos */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 2rem; 
   justify-content: center;
   align-items: center;
   padding: 2rem;
@@ -317,16 +317,17 @@ padding-right: 5%;
 
 .product {
   border-radius: 15px;
-  width: 100%; /* Para que ocupe el espacio de la grilla */
-  height: auto; /* Altura automática para mantener la relación de aspecto */
-  margin: 0; /* Quitar el margen para que la grilla maneje el espaciado */
+  width: 100%; 
+  height: auto;
+  margin: 0; 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinear contenido al principio */
+  justify-content: flex-start; 
   align-items: center;
-  background-color: #fff; /* Fondo blanco para las tarjetas */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave para las tarjetas */
-  transition: transform 0.3s ease-in-out; /* Transición suave para el hover */
+  background-color: #fff; 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+  transition: transform 0.3s ease-in-out; 
+  position: relative;
 }
 
 @keyframes slide {
@@ -370,7 +371,8 @@ padding-right: 5%;
 .product .descripcion {
   font-size: 15px;
   color: #333;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
+  text-align: center;
 }
 
 .product .price {
@@ -380,9 +382,49 @@ padding-right: 5%;
   margin-bottom: 1rem;
 }
 
+
+.product-content{
+  transition: opacity 0.3s, filter 0.3s;
+}
+
 .product:hover {
   transform: translateY(-5px); /* Eleva la tarjeta ligeramente al hacer hover */
   box-shadow: 0 6px 12px rgba(0,0,0,0.15); 
+  
+}
+
+.product:hover .product-content{
+  opacity: 0.7;
+  filter: blur(2px);
+}
+
+.product:hover .heart-icon{
+  display: block;
+}
+
+.product:hover .cart-icon{
+  display: block;
+}
+
+.icon-container{
+  position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translateX(-50%); 
+    display: flex;
+    gap: 12px;
+}
+
+.heart-icon{
+  display: none;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.cart-icon{
+  display: none;
+  cursor: pointer;
+  font-size: 30px;
 }
 
 .addToCartBttn {

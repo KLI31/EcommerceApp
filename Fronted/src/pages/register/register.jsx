@@ -73,7 +73,7 @@ const register = () => {
 
                         <div className="button-container">
                             <Button nombre="Registrarme" borderRadius />
-                            <p>Tienes cuenta? <Link to="/login"><span>Inicia Sesion aqui</span></Link></p>
+                            <p>Tienes cuenta? <Link className="text2" to="/login"><span>Inicia Sesion aqui</span></Link></p>
                         </div>
                     </form>
                 </div>
