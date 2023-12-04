@@ -1,15 +1,16 @@
 .button{
     color: white;
     border: none;
-    padding: 19px 69px;
-    font-size: 16px;
+    padding: 19px 3rem;
+    font-size: 15px;
     font-family: lato;
-    font-weight: 900;
+    font-weight: 600;
+    text-transform: uppercase ;
+    letter-spacing: 1.9px;
 }
 
 .button:hover {
     transition: 0.2s ease-in;
-    transform: translateY(-3px); 
 }
 
 .button.successButton{
@@ -32,6 +33,7 @@
     color: #000;
     border: 1px solid black;
     cursor: pointer;
+    font-family: lato;
 }
 
 label{
@@ -44,6 +46,7 @@ input{
     border: 1px solid #000;
     font-size: 20px;
     margin-bottom: 20px;
+    font-family: lato;
 }
 
 .input-container{
@@ -52,6 +55,7 @@ input{
     flex-direction: column;
     gap: 6px;
     position: relative;
+    font-family: lato;
 }
 
 .icon {
@@ -98,6 +102,7 @@ input{
     color: #333;
     text-align: center;
     margin: 0; 
+    
 }
 
 
@@ -105,7 +110,7 @@ input{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2rem; 
+    padding: 2.5rem 8rem; 
     font-family: 'Lato', sans-serif;  
 }
 
@@ -132,6 +137,8 @@ input{
     margin: 12px;
     justify-content: center;
     align-items: center;
+    letter-spacing: 1.84px;
+    font-weight: 900;
 }
 
 .links a:hover {
@@ -185,6 +192,8 @@ input{
     transition: .2s ease-in;
 }
 
+
+
 .footer {
     background-color: #34251F;
     font-family: 'Lato', sans-serif;
@@ -223,6 +232,7 @@ input{
     color: white;
     text-decoration: none;
     text-transform: uppercase;
+    letter-spacing: 1.9px;
 }
 
 .footer-nav a:hover {
@@ -241,6 +251,7 @@ line-height: 32px;
 text-transform: capitalize;
 opacity: 0.67;
 padding: 2.7%;
+letter-spacing: 1.2px;
 
 }
 

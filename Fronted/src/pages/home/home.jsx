@@ -78,6 +78,12 @@ const Home = () => {
                 <div className="shopTitle">
                     <h1>Nuestros productos</h1>
                 </div>
+                <div className="categoryMenu">
+    <span className="categoryItem active">MÁS VENDIDO</span>
+    <span className="categoryItem">EN VENTA</span>
+    <span className="categoryItem">TENDENCIA AHORA</span>
+    <span className="categoryItem">NUEVOS ESTILOS</span>
+  </div>
                 <div className="products">
                     {products.map((product) => (
                         <Product key={product.id} data={product} />

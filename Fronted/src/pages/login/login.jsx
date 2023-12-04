@@ -54,7 +54,7 @@ const login = () => {
             <div className="izquierda" />
             <div className="derecha">
                 <div className="container">
-                    <h1 className="title-login">Iniciar Sesion</h1>
+                    <h1 className="title-login">Iniciar Sesión</h1>
                     <form onSubmit={handleSubmit}>
                         <Input
                             label="Correo"
@@ -75,9 +75,9 @@ const login = () => {
                         <div className="button-container">
                             <Button nombre="Iniciar Sesion" borderRadius type="submit" />
                             <p>
-                                No tienes cuenta
+                                ¿No tienes cuenta?
                                 <Link className="text2" to="/register">
-                                    <span>Registrate aqui</span>
+                                    <span>Regístrate aqui</span>
                                 </Link>
                             </p>
                         </div>

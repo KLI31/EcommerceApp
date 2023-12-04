@@ -41,10 +41,10 @@ export const Product = (props) => {
                         <li><img src={img3} alt={Nombre} /></li>
                     </ul>
                 </div>
-                <div className="descripcion">
+                {/* <div className="descripcion">
                     <p>{Descripcion}</p>
                     <p>{id}</p>
-                </div>
+                </div> */}
                 <div className="description">
                     <p>
                         <b>{Nombre}</b>

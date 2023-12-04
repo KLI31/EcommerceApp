@@ -1,5 +1,5 @@
-import { useCart } from '../../hooks/useCart'; // Asegúrate de que la ruta al hook es correcta
-import './cart.css'; // Asume que este es el archivo CSS que vas a crear
+import { useCart } from '../../hooks/useCart';
+import './cart.css';
 
 const CartPage = () => {
     const { cart, total, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
@@ -8,7 +8,7 @@ const CartPage = () => {
     return (
         <div className="cart-container">
             <div className="cart-header">
-                <h1>Mi Carrito De Compras</h1>
+                <h1>Mi Carrito</h1>
             </div>
             <div className="cart-content">
                 {cartItems.length > 0 ? (
@@ -25,15 +25,15 @@ const CartPage = () => {
                                     <button onClick={() => incrementQuantity(item.id_prenda)}>+</button>
                                 </div>
                                 <p className="item-price">${item.Precio}</p>
-                                <button className="item-remove" onClick={() => removeFromCart(item.id_prenda)}>Eliminar</button>
                             </div>
+                            <button className="item-remove" onClick={() => removeFromCart(item.id_prenda)}>X</button>
                         </div>
                     ))
                 ) : (
                     <p className="empty-cart">Tu carrito está vacío.</p>
                 )}
                 <div className="cart-summary">
-                    <p className="total-cost">Total: ${total.toFixed(2)}</p>
+                    <p className="total-cost">Subtotal: ${total.toFixed(2)}</p>
                     <button className="checkout-btn">Pagar Ahora</button>
                 </div>
             </div>

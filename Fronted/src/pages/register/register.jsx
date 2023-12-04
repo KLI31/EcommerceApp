@@ -64,7 +64,7 @@ const register = () => {
             <div className="izquierda" />
             <div className="derecha">
                 <div className="container">
-                    <h1 className="title-login">Registrate</h1>
+                    <h1 className="title-login">Regístrate</h1>
                     <form onSubmit={handleSubmit}>
                         <Input name="Primer_nombre" label="Nombre" placeholder="Ingrese su nombre" type="text" value={Primer_nombre} size={40} onChange={handleChange} />
                         <Input name="Primer_Apellido" label="Apellido" placeholder="Ingrese su Apellido" type="text" value={Primer_Apellido} size={40} onChange={handleChange} />
@@ -73,7 +73,7 @@ const register = () => {
 
                         <div className="button-container">
                             <Button nombre="Registrarme" borderRadius />
-                            <p>Tienes cuenta? <Link className="text2" to="/login"><span>Inicia Sesion aqui</span></Link></p>
+                            <p>¿Ya tienes cuenta? <Link className="text2" to="/login"><span>Inicia Sesión aqui</span></Link></p>
                         </div>
                     </form>
                 </div>

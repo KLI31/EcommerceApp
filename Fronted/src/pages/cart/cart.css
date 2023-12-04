@@ -1,11 +1,10 @@
 .cart-container {
-  background: #f8f8f8;
+  background: #fff;
   border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   width: 90%;
-  max-width: 600px;
+  max-width: 70%;
   margin: 50px auto;
-  padding: 40px;
+  padding: 1em;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -13,8 +12,9 @@
   text-align: center;
   margin-bottom: 40px;
   font-size: 36px;
-  color: #333;
+  color: #34251F;
   font-weight: bold;
+  font-family: "Frank Ruhl Libre", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .cart-item {
@@ -24,22 +24,21 @@
 }
 
 .item-image img {
-  width: 120px;
-  height: auto;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  width: 160px;
+  height: 100%;
   object-fit: cover;
 }
 
 .item-info {
   margin-left: 30px;
+  padding-top: 30px;
   width: calc(100% - 150px);
 }
 
 .item-info h2 {
   margin: 0;
-  color: #333;
-  font-size: 22px;
+  color: #34251F;
+  font-size: 1.5rem;
 }
 
 .item-quantity {
@@ -49,11 +48,11 @@
 }
 
 .item-quantity button {
-  background: #f9f9f9;
+  background: rgb(221, 203, 212)9f9;
   border: 1px solid #ddd;
   padding: 7px 12px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1em;
 }
 
 .item-quantity span {
@@ -63,19 +62,19 @@
 
 .item-price {
   font-size: 22px;
-  color: #555;
+  color: #4e4d4d;
   margin: 15px 0;
 }
 
 .item-remove {
-  background: #dc3545;
+  background: #34251F;
   color: white;
   border: none;
   padding: 12px 18px;
   cursor: pointer;
   border-radius: 7px;
-  font-size: 18px;
-  margin-top: 15px;
+  font-size: 16px;
+  top: 30%;
 }
 
 .cart-summary {
@@ -84,9 +83,9 @@
 }
 
 .total-cost {
-  font-size: 22px;
+  font-size: 30px;
   margin: 15px 0;
-  color: #333;
+  color: #383635;
 }
 
 .checkout-btn {
@@ -95,12 +94,14 @@
   border: none;
   padding: 18px 35px;
   cursor: pointer;
-  border-radius: 7px;
-  font-size: 20px;
-  margin-top: 30px;
-  width: 100%;
+  border-radius: 4px;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  width: 35%;
   box-sizing: border-box;
-  transition: background 0.3s ease;
+  transition: 0.3s ease;
+  font-family: lato;
+  text-transform: uppercase;
 }
 
 .checkout-btn:hover {

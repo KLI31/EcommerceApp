@@ -1,50 +1,87 @@
 /* WishlistPage.css */
 .wishlist-page {
-    padding: 20px;
-    color: #FFF;
-    background-color: #000; /* Fondo negro como en el boceto */
+    padding: 8em; 
+    padding-top: 2.5em;
+    background-color: fff; /* Fondo blanco para la página completa */
 }
 
 .wishlist-title {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px; 
+    font-size: 2.5rem;
+    font-weight: bold; 
+    color: #34251F;
+    font-family: "Frank Ruhl Libre", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .wishlist-items {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    gap: 30px; 
+    justify-content: space-around;
 }
 
 .wishlist-item {
-    border: 1px solid #FFF; /* Bordes blancos como en el boceto */
-    padding: 10px;
-    width: calc(30% - 20px); /* Dos elementos por fila con espacio entre ellos */
+    display: flex; 
+    align-items: center; 
+    padding: 10px; 
+    width: calc(50% - 20px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.07); 
+    position: relative;
+    background-color: #fff; 
+    margin-bottom: 30px; 
+    
+     
 }
 
 .wishlist-item img {
-    width: 100%; /* Ajusta la imagen al contenedor */
-    height: auto; /* Mantiene la relación de aspecto */
-    margin-bottom: 10px;
+    width: auto;
+    max-width: 30%;
+    height: auto; 
+    margin-right: 20px;
 }
 
 .item-details {
-    text-align: center;
+    text-align: left;
+    flex-grow: 1;
+    color: #34251F;
+    letter-spacing: 0.3px;
+    font-family: "Frank Ruhl Libre", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.add-to-cart {
-    background-color: #FFF; /* Fondo blanco para el botón */
-    color: #000; /* Texto negro para el botón */
+.item-details h2{
+    font-size: 1.4rem;
+}
+
+.item-details p {
+    margin: 0; 
+    white-space: nowrap; 
+    font-weight: bold;
+    letter-spacing: 0.7px;
+    
+}
+
+
+.wishlist-item button {
+    position: absolute;
+    top: 40%;
+    right: 4%;
     border: none;
-    padding: 10px 20px;
+    background-color: #34251F;
+    color: #fff;
     cursor: pointer;
-    margin-top: 10px;
+    padding: 5px 10px; 
+    font-size: 0.8rem;
+    font-family: lato;
+    font-weight: 600;
+    border-radius: 10%;
+    margin-left: 20px;
 }
 
-/* Ajusta los estilos para dispositivos móviles */
+
 @media (max-width: 768px) {
     .wishlist-item {
-        width: 100%; /* Un elemento por fila en dispositivos móviles */
+        width: calc(100% - 30px);
     }
 }
+

@@ -125,14 +125,14 @@ body{
 .fashion-content h2 {
     font-size: 2.5em;
     margin-top: 0;
+    font-family: "Frank Ruhl Libre";
 }
 
 .fashion-content p {
     color: var(--color-primary-dark-brown);
     font-size: 20px;
     font-weight: 400;
-    line-height: 180%; 
-    text-transform: capitalize;
+    line-height: 180%;
     margin-top: 15px;
     font-family: lato;
 }
@@ -172,8 +172,9 @@ body{
 
 .review-header h2 {
   font-size: 2.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.2em;
   color: #34251F;
+  font-family: "Frank Ruhl Libre";
 }
 
 .review-header p {
@@ -186,6 +187,7 @@ font-size: 20px;
 font-style: normal;
 font-weight: 400;
 line-height: 180%;
+padding-top: 5px;
 }
 
 .review-slider {
@@ -304,19 +306,24 @@ padding-right: 5%;
 .shopTitle {
   margin-top: 100px;
   text-align: center;
-  font-size: 40px;
+  font-size: 25px;
+  color: var(--color-primary-dark-brown, #34251F);
+  font-family: "Frank Ruhl Libre";
 }
+
+
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
   gap: 2rem; 
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 7em;
+  padding-top: 3em;
 }
 
 .product {
-  border-radius: 15px;
+  /* border-radius: 10px; */
   width: 100%; 
   height: auto;
   margin: 0; 
@@ -330,6 +337,8 @@ padding-right: 5%;
   position: relative;
 }
 
+
+
 @keyframes slide {
   0% {margin-left: 0%;}
   33% {margin-left: 0%;}
@@ -342,8 +351,7 @@ padding-right: 5%;
 }
 
 .slide-var {
-  width: 50%;
-  margin: 50px auto 0;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -364,22 +372,59 @@ padding-right: 5%;
 }
 
 .product .description {
-  padding: 1rem;
   text-align: center;
+  color: var(--color-primary-dark-brown, #34251F);
+  font-size: 21px;
+  font-weight: 500;
+  font-family: "Frank Ruhl Libre";
+  padding-bottom: 2rem;
 }
 
-.product .descripcion {
+.product .price{
+  font-family: lato;
+  padding-bottom: 2rem;
+  text-align: center;
+  color: var(--color-primary-dark-brown, #34251F);
+  font-size: 21px;
+  font-weight: 500;
+}
+
+/* .product .descripcion {
   font-size: 15px;
   color: #333;
-  margin-bottom: 0.3rem;
   text-align: center;
+} */
+
+.categoryMenu {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 25px;
+  font-family: lato;
 }
 
-.product .price {
-  font-size: 1.2rem;
+.categoryItem {
+  font-size: 1rem;
   color: #333;
-  font-weight: bold;
-  margin-bottom: 1rem;
+  padding: 5px 10px;
+  cursor: pointer;/* Transición suave del color */
+}
+
+
+.categoryItem::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width .3s ease-out; /* Transición suave de la anchura */
+}
+
+.categoryItem:hover::after {
+  width: 100%; /* Extiende la línea en hover */
 }
 
 
@@ -405,6 +450,9 @@ padding-right: 5%;
 .product:hover .cart-icon{
   display: block;
 }
+
+
+
 
 .icon-container{
   position: absolute;
@@ -445,7 +493,7 @@ padding-right: 5%;
 
 
 
-  .hero-section {
+.hero-section {
       padding: 20px;
       text-align: center;
       flex-direction: column;
@@ -474,6 +522,7 @@ padding-right: 5%;
   
   .fashion-section {
       flex-direction: column;
+      font-family: "Frank Ruhl Libre";
   }
 
   .fashion-image-container img {
@@ -489,6 +538,7 @@ padding-right: 5%;
       font-size: 2em;
       line-height: 1.2em;
       text-align: center;
+      
   }
 
   .fashion-content p {
@@ -500,43 +550,6 @@ padding-right: 5%;
       margin-right: 20px;
   }
 
-
-
-  .review-section {
-      padding: 20px;
-  }
-
-  .review-card {
-    padding: 0.5em;
-    margin-bottom: 20px;
-  }
-
-  .review-header h2 {
-    font-size: 2em;
-  }
-
-  .review-header p {
-    font-size: 1.2em;
-    line-height: 1.5em;
-  }
-
-  .review-slider {
-      flex-direction: column;
-  }
-
-  .review-card img {
-      width: 60px;
-      height: 60px;
-  }
-
-  .review-card h3 {
-      font-size: 1em;
-  }
-
-  .review-card p {
-      font-size: 0.7em;
-      line-height: 1.7em;
-  }
 }
 
 
@@ -551,7 +564,7 @@ padding-right: 5%;
   justify-content: center;
   align-items: center;
   background-color: #EEDDCC;
-  padding: 150px;
+  padding: 8em;
   padding-top: 2.5%;
   padding-bottom: 10%;
   position: relative;

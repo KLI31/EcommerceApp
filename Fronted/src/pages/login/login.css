@@ -43,7 +43,8 @@ body{
 }
 
 p{
-    margin-top: 30px;
+    margin-top: 1rem;
+    font-family: lato;
 }
 span{
     text-decoration: 2px solid underline;
