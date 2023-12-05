@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { OutlineButton } from "./Button";
-import { FiHeart } from "react-icons/fi";
+import { FaRegHeart } from "react-icons/fa";
 import { IoCart } from "react-icons/io5";
-import { IoMdHeart } from "react-icons/io";
+import { LuShoppingCart } from "react-icons/lu";
 
 const Navbar = ({ backgroundColor }) => {
     const { user, logout } = useContext(AuthContext);
@@ -25,8 +25,8 @@ const Navbar = ({ backgroundColor }) => {
             <div className="navbar-section">
                 {user ? (
                     <>
-                        <Link to="/cart"><IoCart color="#735c49" /></Link>
-                        <Link to="/wishlist"><IoMdHeart color="#ff392e" /></Link>
+                        <Link to="/cart"><LuShoppingCart color="#34251F" /></Link>
+                        <Link to="/wishlist"><FaRegHeart color="#34251F" /></Link>
                         <div className="user-info">
                             <p>¡Hola, {user.Primer_nombre}!</p>
                             <Link to="/" onClick={logout}><OutlineButton nombre="CERRAR SESIÓN" /></Link>

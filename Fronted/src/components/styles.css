@@ -129,7 +129,6 @@ input {
     display: flex;
     list-style: none;
     gap: 1rem;
-    /* Espaciado uniforme */
     margin: 0;
     padding: 0;
 }
@@ -182,7 +181,6 @@ input {
 }
 
 .button-section {
-    background-color: aqua;
     margin: 2px;
 }
 
@@ -203,13 +201,13 @@ input {
     font-size: 0.9rem;
     color: #34251F;
     margin: 8px;
-    display: flex; /* Utilizar flex para alinear el texto y el nombre */
-    flex-direction: column; /* Alineación vertical */
-    align-items: flex-start; /* Alinear al inicio */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .icons svg {
-    font-size: 1.5rem; /* Tamaño más grande para los íconos */
+    font-size: 1.5rem;
     color: #34251F;
 }
 
@@ -261,7 +259,6 @@ input {
 
 .cart-icon{
     color: #34251F;
-    background-color: aqua;
 }
 
 
@@ -313,7 +310,6 @@ input {
 
     .logo h2 {
         font-size: 1.5rem;
-        /* Tamaño más pequeño para dispositivos móviles */
     }
 
     .logo {
@@ -326,24 +322,21 @@ input {
 
     .links ul {
         flex-direction: column;
-        /* Los enlaces se apilan verticalmente */
         align-items: center;
-        /* Centrar los enlaces */
 
     }
 
     .links a {
         margin-bottom: 0.5rem;
-        /* Añadir margen inferior a los enlaces */
     }
 
     .navbar-section {
-        flex-direction: column; /* Alineación vertical de los elementos en dispositivos móviles */
+        flex-direction: column;
         align-items: flex-start;
     }
 
     .user-info {
-        order: -1; /* Coloca la información del usuario arriba de los íconos en móviles */
+        order: -1;
         margin-bottom: 0.5rem;
     }
 
