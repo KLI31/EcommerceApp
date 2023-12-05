@@ -110,19 +110,19 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    /* Ajustado para no ser demasiado ancho */
+    padding: 2rem 6rem;
     font-family: 'Lato', sans-serif;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sombra suave para dar profundidad */
     z-index: 1000;
 }
 
 .logo h2 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     /* Tamaño más grande para destacar */
     color: #34251F;
+    font-weight: bolder;
+    letter-spacing: 1.5px;
 }
 
 .links ul {
@@ -135,42 +135,43 @@ input {
 }
 
 .links a {
-    color: #4B3C35;
+    color: #34251F;
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.3s ease;
     padding: 0.5rem 1rem;
-    /* Espaciado alrededor de los enlaces */
-    border-radius: 5px;
-    /* Bordes redondeados */
+    font-weight: 800;
+    letter-spacing: 1.3px;
+
 }
 
 .links a:hover {
-    background-color: #917C6F;
-    color: white
+    color: #4B3C35
 }
 
 .navbar-section {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
+    font-size: 20px;
 }
 
 .user-info {
     display: flex;
     align-items: center;
-    gap: 0.5rem; /* Espaciado entre texto de inicio de sesión y nombre del usuario */
+    gap: 1.5rem; /* Espaciado entre texto de inicio de sesión y nombre del usuario */
     margin-right: 1rem;
 }
 
 .user-info h4 {
     margin: 0;
     font-size: 0.9rem;
+    
 }
 
 .user-info p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: #34251F;
 }
 
@@ -187,20 +188,21 @@ input {
 
 .outlineButton {
     background-color: transparent;
-    border: 1px solid #4B3C35;
+    border: 1.6px solid #4B3C35;
     color: #4B3C35;
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
-    font-weight: 500;
-    border-radius: 5px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
     cursor: pointer;
     transition: background-color 0.2s ease-in;
+    font-family: lato;
 }
 
 .user-text {
     font-size: 0.9rem;
     color: #34251F;
-    margin: 0;
+    margin: 8px;
     display: flex; /* Utilizar flex para alinear el texto y el nombre */
     flex-direction: column; /* Alineación vertical */
     align-items: flex-start; /* Alinear al inicio */
@@ -208,11 +210,8 @@ input {
 
 .icons svg {
     font-size: 1.5rem; /* Tamaño más grande para los íconos */
-    color: #770ce8;
+    color: #34251F;
 }
-
-
-
 
 .outlineButton:hover {
     background-color: #4B3C35;

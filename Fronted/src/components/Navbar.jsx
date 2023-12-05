@@ -27,7 +27,7 @@ const Navbar = ({ backgroundColor }) => {
                         <Link to="/cart"><IoCart /></Link>
                         <Link to="/wishlist"><FiHeart /></Link>
                         <div className="user-info">
-                            <p>Inicio de sesión: {user.Primer_nombre} {user.Primer_Apellido}</p>
+                            <p>¡Hola, {user.Primer_nombre}!</p>
                             <Link to="/home" onClick={logout}><OutlineButton nombre="CERRAR SESIÓN" /></Link>
                         </div>
                     </>
