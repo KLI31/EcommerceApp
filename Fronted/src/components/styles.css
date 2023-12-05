@@ -1,11 +1,11 @@
-.button{
+.button {
     color: white;
     border: none;
     padding: 19px 3rem;
     font-size: 15px;
     font-family: lato;
     font-weight: 600;
-    text-transform: uppercase ;
+    text-transform: uppercase;
     letter-spacing: 1.9px;
 }
 
@@ -13,22 +13,22 @@
     transition: 0.2s ease-in;
 }
 
-.button.successButton{
+.button.successButton {
     background-color: #4B3C35;
 }
 
-.button.successButton:hover{
+.button.successButton:hover {
     background-color: transparent;
     color: #4B3C35;
     border: 1px solid #4B3C35;
     cursor: pointer;
 }
 
-.button.errorButton{
+.button.errorButton {
     background-color: red;
 }
 
-.button.errorButton:hover{
+.button.errorButton:hover {
     background-color: white;
     color: #000;
     border: 1px solid black;
@@ -36,11 +36,11 @@
     font-family: lato;
 }
 
-label{
+label {
     font-size: 19px;
 }
 
-input{
+input {
     padding: 15px 30px;
     border-radius: 14px;
     border: 1px solid #000;
@@ -49,7 +49,7 @@ input{
     font-family: lato;
 }
 
-.input-container{
+.input-container {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -65,7 +65,7 @@ input{
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    
+
 }
 
 .CardCollection {
@@ -73,13 +73,13 @@ input{
     border-radius: 8px;
     overflow: hidden;
     margin: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     cursor: pointer;
 }
 
 .CardCollection:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card-image-container {
@@ -89,7 +89,7 @@ input{
 
 .card-image {
     width: 100%;
-    display: block; 
+    display: block;
     height: auto;
 }
 
@@ -101,8 +101,8 @@ input{
     font-size: 1em;
     color: #333;
     text-align: center;
-    margin: 0; 
-    
+    margin: 0;
+
 }
 
 
@@ -110,86 +110,113 @@ input{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2.5rem 8rem; 
-    font-family: 'Lato', sans-serif;  
+    padding: 1rem 2rem;
+    /* Ajustado para no ser demasiado ancho */
+    font-family: 'Lato', sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra suave para dar profundidad */
+    z-index: 1000;
 }
 
 .logo h2 {
     margin: 0;
-    font-size: 1.5rem; 
-    font-weight: bold;
+    font-size: 2rem;
+    /* Tamaño más grande para destacar */
+    color: #34251F;
 }
+
 .links ul {
     display: flex;
     list-style: none;
-    gap: 20px; 
+    gap: 1rem;
+    /* Espaciado uniforme */
     margin: 0;
     padding: 0;
-    justify-content: center;
-    align-items: center;
 }
 
 .links a {
     color: #4B3C35;
     text-decoration: none;
-    font-weight: 500;
+    font-size: 1rem;
     transition: color 0.3s ease;
-    margin: 12px;
-    justify-content: center;
-    align-items: center;
-    letter-spacing: 1.84px;
-    font-weight: 900;
+    padding: 0.5rem 1rem;
+    /* Espaciado alrededor de los enlaces */
+    border-radius: 5px;
+    /* Bordes redondeados */
 }
 
 .links a:hover {
-    color: #917C6F; 
+    background-color: #917C6F;
+    color: white
 }
 
 .navbar-section {
     display: flex;
     align-items: center;
-    gap: 20px; 
+    gap: 1rem;
 }
 
 .user-info {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin: 5px;
+    align-items: center;
+    gap: 0.5rem; /* Espaciado entre texto de inicio de sesión y nombre del usuario */
+    margin-right: 1rem;
 }
 
 .user-info h4 {
     margin: 0;
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
 }
 
-.navbar-section ul{
+.user-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #34251F;
+}
+
+.navbar-section ul {
     display: flex;
     gap: 5%;
     list-style: none;
 }
 
-.button-section{
+.button-section {
     background-color: aqua;
     margin: 2px;
 }
 
-.outlineButton{
+.outlineButton {
     background-color: transparent;
     border: 1px solid #4B3C35;
     color: #4B3C35;
-    padding: 10px 20px;
-    font-size: 15px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.2s ease-in;
+}
+
+.user-text {
+    font-size: 0.9rem;
+    color: #34251F;
+    margin: 0;
+    display: flex; /* Utilizar flex para alinear el texto y el nombre */
+    flex-direction: column; /* Alineación vertical */
+    align-items: flex-start; /* Alinear al inicio */
+}
+
+.icons svg {
+    font-size: 1.5rem; /* Tamaño más grande para los íconos */
+    color: #770ce8;
 }
 
 
-.outlineButton:hover{
+
+
+.outlineButton:hover {
     background-color: #4B3C35;
     color: white;
-    transition: .2s ease-in;
 }
 
 
@@ -209,13 +236,13 @@ input{
 .footer-top {
     background-color: var(--color-secondary-white, #FFF);
     padding: 17px 0;
-    width: 70%; 
+    width: 70%;
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
     font-weight: 450;
     font-size: 18px;
-    
-    
+
+
 }
 
 .footer-nav {
@@ -225,6 +252,13 @@ input{
     font-weight: 500;
     letter-spacing: 1.5px;
     gap: 40px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Espaciado entre íconos */
 }
 
 
@@ -240,18 +274,18 @@ input{
 }
 
 .footer-bottom {
-color: var(--color-secondary-white, #FFF);
-text-align: center;
-text-decoration: none;
-font-family: Lato;
-font-size: 13px;
-font-style: normal;
-font-weight: 400;
-line-height: 32px;
-text-transform: capitalize;
-opacity: 0.67;
-padding: 2.7%;
-letter-spacing: 1.2px;
+    color: var(--color-secondary-white, #FFF);
+    text-align: center;
+    text-decoration: none;
+    font-family: Lato;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    text-transform: capitalize;
+    opacity: 0.67;
+    padding: 2.7%;
+    letter-spacing: 1.2px;
 
 }
 
@@ -261,42 +295,63 @@ letter-spacing: 1.2px;
 
 @media (max-width: 768px) {
 
-    
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    padding: 7% 9%;
-    color: #4B3C35;
-    font-family: Lato;
-    font-weight: 700;
-}
 
-.logo{
-    font-size: 80%;
-    align-items: left;
-    font-weight: 900;
-    font-family: Lato;
-}
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        padding: 7% 9%;
+        color: #4B3C35;
+        font-family: Lato;
+        font-weight: 700;
+        flex-direction: column;
+        padding: 1rem;
+
+    }
+
+    .logo h2 {
+        font-size: 1.5rem;
+        /* Tamaño más pequeño para dispositivos móviles */
+    }
+
+    .logo {
+        font-size: 80%;
+        align-items: left;
+        font-weight: 900;
+        font-family: Lato;
+    }
 
 
-.links ul{
-    display: flex;
-    gap: 7%;
-    list-style: none;
-    align-items: center;
-}
+    .links ul {
+        flex-direction: column;
+        /* Los enlaces se apilan verticalmente */
+        align-items: center;
+        /* Centrar los enlaces */
+
+    }
+
+    .links a {
+        margin-bottom: 0.5rem;
+        /* Añadir margen inferior a los enlaces */
+    }
+
+    .navbar-section {
+        flex-direction: column; /* Alineación vertical de los elementos en dispositivos móviles */
+        align-items: flex-start;
+    }
+
+    .user-info {
+        order: -1; /* Coloca la información del usuario arriba de los íconos en móviles */
+        margin-bottom: 0.5rem;
+    }
 
 
-.button-section{
-    margin: 2px;
-}
+    .button-section {
+        margin: 2px;
+    }
 
-.outlineButton{
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 10px;
-    cursor: pointer;
-}
+    .outlineButton {
+        font-size: 0.8rem;
+    }
 
 
 
