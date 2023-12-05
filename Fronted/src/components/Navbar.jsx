@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { OutlineButton } from "./Button";
 import { FiHeart } from "react-icons/fi";
 import { IoCart } from "react-icons/io5";
+import { IoMdHeart } from "react-icons/io";
 
 const Navbar = ({ backgroundColor }) => {
     const { user, logout } = useContext(AuthContext);
@@ -24,11 +25,11 @@ const Navbar = ({ backgroundColor }) => {
             <div className="navbar-section">
                 {user ? (
                     <>
-                        <Link to="/cart"><IoCart /></Link>
-                        <Link to="/wishlist"><FiHeart /></Link>
+                        <Link to="/cart"><IoCart color="#735c49" /></Link>
+                        <Link to="/wishlist"><IoMdHeart color="#ff392e" /></Link>
                         <div className="user-info">
                             <p>¡Hola, {user.Primer_nombre}!</p>
-                            <Link to="/home" onClick={logout}><OutlineButton nombre="CERRAR SESIÓN" /></Link>
+                            <Link to="/" onClick={logout}><OutlineButton nombre="CERRAR SESIÓN" /></Link>
                         </div>
                     </>
                 ) : (

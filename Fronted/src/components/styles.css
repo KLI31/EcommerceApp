@@ -159,7 +159,7 @@ input {
 .user-info {
     display: flex;
     align-items: center;
-    gap: 1.5rem; /* Espaciado entre texto de inicio de sesión y nombre del usuario */
+    gap: 1.5rem;
     margin-right: 1rem;
 }
 
@@ -257,7 +257,11 @@ input {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    /* Espaciado entre íconos */
+}
+
+.cart-icon{
+    color: #34251F;
+    background-color: aqua;
 }
 
 
